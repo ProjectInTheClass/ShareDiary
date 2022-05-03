@@ -1,0 +1,2 @@
+# ShareDiary
+share diary repository
