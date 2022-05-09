@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  Sharediary
+//  ShareDiary
 //
-//  Created by 김현철 on 2022/05/06.
+//  Created by 김현철 on 2022/05/10.
 //
 
 import UIKit
