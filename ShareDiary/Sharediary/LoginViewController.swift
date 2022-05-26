@@ -23,6 +23,10 @@ class LoginViewController: UIViewController{
         Auth.auth().signIn(withEmail: email.text!, password: password.text!) { (user,error) in
             if user != nil{
                 print("Login success!")
+                /*let vcName = self.storyboard?.instantiateViewController(withIdentifier: "MainView")
+                vcName?.modalPresentationStyle = .fullScreen
+                vcName?.modalTransitionStyle = .crossDissolve
+                self.present(vcName!, animated: true, completion: nil)*/
             }
             else{
                 print("login fail")
@@ -54,6 +58,29 @@ class LoginViewController: UIViewController{
             //#TODO signin fail reason
         }
     }
+    
+    
+    @IBAction func ForgotPassword(_ sender: Any) {
+        Auth.auth().sendPasswordReset(withEmail: email.text!){
+            (error) in
+            if error != nil{
+                print("Fail Email")
+                let FailEmailAlert = UIAlertController(title: "알림", message: "없는 이메일 주소입니다.", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
+                FailEmailAlert.addAction(ok)
+                self.present(FailEmailAlert, animated: true,completion: nil)
+            }
+            else{
+                print("Send Emial")
+                let SendEmailAlert = UIAlertController(title: "알림", message: "이메일을 전송했습니다.", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
+                SendEmailAlert.addAction(ok)
+                self.present(SendEmailAlert, animated: true,completion: nil)
+            }
+        }
+    }
+    
+    
     
 
     override func viewDidLoad() {
