@@ -16,6 +16,10 @@
 		47AFB4D02829CEE400D1A9F1 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFB4CF2829CEE400D1A9F1 /* Group.swift */; };
 		47AFB4D22829CEF700D1A9F1 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFB4D12829CEF700D1A9F1 /* Diary.swift */; };
 		47AFB4D42829D58600D1A9F1 /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFB4D32829D58600D1A9F1 /* DummyData.swift */; };
+		47D0B9AA2840D2790098439A /* HomeTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47D0B9A92840D2790098439A /* HomeTab.storyboard */; };
+		47D0B9AC2840D49F0098439A /* GroupTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47D0B9AB2840D49F0098439A /* GroupTab.storyboard */; };
+		47D0B9B02840D4DB0098439A /* WriteTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47D0B9AF2840D4DB0098439A /* WriteTab.storyboard */; };
+		47D0B9B22840D4E30098439A /* OptionTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47D0B9B12840D4E30098439A /* OptionTab.storyboard */; };
 		47EB834F2829A42F00B43513 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EB834E2829A42F00B43513 /* AppDelegate.swift */; };
 		47EB83512829A42F00B43513 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EB83502829A42F00B43513 /* SceneDelegate.swift */; };
 		47EB83532829A42F00B43513 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EB83522829A42F00B43513 /* ViewController.swift */; };
@@ -33,6 +37,10 @@
 		47AFB4CF2829CEE400D1A9F1 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		47AFB4D12829CEF700D1A9F1 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
 		47AFB4D32829D58600D1A9F1 /* DummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
+		47D0B9A92840D2790098439A /* HomeTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeTab.storyboard; sourceTree = "<group>"; };
+		47D0B9AB2840D49F0098439A /* GroupTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GroupTab.storyboard; sourceTree = "<group>"; };
+		47D0B9AF2840D4DB0098439A /* WriteTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WriteTab.storyboard; sourceTree = "<group>"; };
+		47D0B9B12840D4E30098439A /* OptionTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OptionTab.storyboard; sourceTree = "<group>"; };
 		47EB834B2829A42F00B43513 /* ShareDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShareDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47EB834E2829A42F00B43513 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47EB83502829A42F00B43513 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +80,49 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		47D0B9A42840D2170098439A /* TabBarItems */ = {
+			isa = PBXGroup;
+			children = (
+				47D0B9A82840D2520098439A /* OptionTab */,
+				47D0B9A72840D24C0098439A /* WriteTab */,
+				47D0B9A62840D2470098439A /* GroupTab */,
+				47D0B9A52840D23D0098439A /* HomeTab */,
+			);
+			path = TabBarItems;
+			sourceTree = "<group>";
+		};
+		47D0B9A52840D23D0098439A /* HomeTab */ = {
+			isa = PBXGroup;
+			children = (
+				47D0B9A92840D2790098439A /* HomeTab.storyboard */,
+			);
+			path = HomeTab;
+			sourceTree = "<group>";
+		};
+		47D0B9A62840D2470098439A /* GroupTab */ = {
+			isa = PBXGroup;
+			children = (
+				47D0B9AB2840D49F0098439A /* GroupTab.storyboard */,
+			);
+			path = GroupTab;
+			sourceTree = "<group>";
+		};
+		47D0B9A72840D24C0098439A /* WriteTab */ = {
+			isa = PBXGroup;
+			children = (
+				47D0B9AF2840D4DB0098439A /* WriteTab.storyboard */,
+			);
+			path = WriteTab;
+			sourceTree = "<group>";
+		};
+		47D0B9A82840D2520098439A /* OptionTab */ = {
+			isa = PBXGroup;
+			children = (
+				47D0B9B12840D4E30098439A /* OptionTab.storyboard */,
+			);
+			path = OptionTab;
+			sourceTree = "<group>";
+		};
 		47EB83422829A42F00B43513 = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +142,7 @@
 		47EB834D2829A42F00B43513 /* ShareDiary */ = {
 			isa = PBXGroup;
 			children = (
+				47D0B9A42840D2170098439A /* TabBarItems */,
 				4775064E2829BF7200C0A93F /* Models */,
 				47EB834E2829A42F00B43513 /* AppDelegate.swift */,
 				47EB83502829A42F00B43513 /* SceneDelegate.swift */,
@@ -175,10 +227,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				47EB835B2829A43A00B43513 /* LaunchScreen.storyboard in Resources */,
+				47D0B9AA2840D2790098439A /* HomeTab.storyboard in Resources */,
+				47D0B9AC2840D49F0098439A /* GroupTab.storyboard in Resources */,
 				477506502829C10100C0A93F /* GoogleService-Info.plist in Resources */,
+				47D0B9B22840D4E30098439A /* OptionTab.storyboard in Resources */,
 				9B3EEBEA28409E9D00A66908 /* HomeCardCell.xib in Resources */,
 				47EB83582829A43A00B43513 /* Assets.xcassets in Resources */,
 				D8B13146283BDB99000B84AA /* Login.storyboard in Resources */,
+				47D0B9B02840D4DB0098439A /* WriteTab.storyboard in Resources */,
 				47EB83562829A42F00B43513 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,6 +402,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShareDiary/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -373,6 +430,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShareDiary/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

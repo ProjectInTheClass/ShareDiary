@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ayx-8F-FZg">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--option-->
+        <scene sceneID="Lj9-7v-xoH">
+            <objects>
+                <viewController storyboardIdentifier="OptionTab" id="Ayx-8F-FZg" userLabel="option" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="15t-mA-xhd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="odc-F5-caP" userLabel="top">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="99"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="설정" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gq2-c1-LQh">
+                                        <rect key="frame" x="10" y="59" width="394" height="30"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                        <color key="textColor" red="0.96066123250000002" green="0.94510656599999998" blue="0.94509774449999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.87239581349999995" green="0.62970143560000003" blue="0.51762157679999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="gq2-c1-LQh" firstAttribute="leading" secondItem="odc-F5-caP" secondAttribute="leading" constant="10" id="Gge-vn-OIu"/>
+                                    <constraint firstAttribute="trailing" secondItem="gq2-c1-LQh" secondAttribute="trailing" constant="10" id="TXP-4V-9is"/>
+                                    <constraint firstAttribute="bottom" secondItem="gq2-c1-LQh" secondAttribute="bottom" constant="10" id="kLu-3f-r06"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qdd-P3-T3Y">
+                                <rect key="frame" x="0.0" y="99" width="414" height="763"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="7tl-XQ-6jb"/>
+                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <constraints>
+                            <constraint firstItem="qdd-P3-T3Y" firstAttribute="top" secondItem="odc-F5-caP" secondAttribute="bottom" id="5xU-uW-j4G"/>
+                            <constraint firstItem="7tl-XQ-6jb" firstAttribute="trailing" secondItem="qdd-P3-T3Y" secondAttribute="trailing" id="Ssg-35-zuZ"/>
+                            <constraint firstItem="qdd-P3-T3Y" firstAttribute="leading" secondItem="7tl-XQ-6jb" secondAttribute="leading" id="sba-We-uRF"/>
+                            <constraint firstItem="7tl-XQ-6jb" firstAttribute="bottom" secondItem="qdd-P3-T3Y" secondAttribute="bottom" id="yc3-4H-o6f"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="gearshape" catalog="system" selectedImage="gearshape.fill" id="qqB-9L-aZ3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CMb-QY-ANt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="143" y="32"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="gearshape" catalog="system" width="128" height="121"/>
+        <image name="gearshape.fill" catalog="system" width="128" height="121"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
