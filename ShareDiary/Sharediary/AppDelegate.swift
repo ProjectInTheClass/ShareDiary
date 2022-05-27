@@ -2,10 +2,11 @@
 //  AppDelegate.swift
 //  ShareDiary
 //
-//  Created by Lee on 2022/05/15.
+//  Created by 김현철 on 2022/05/10.
 //
 
 import UIKit
+import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -13,8 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        sleep(1)
         // Override point for customization after application launch.
+        FirebaseApp.configure()
+        
         return true
     }
 

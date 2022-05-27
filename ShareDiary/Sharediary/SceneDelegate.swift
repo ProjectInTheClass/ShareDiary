@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  ShareDiary
 //
-//  Created by Lee on 2022/05/15.
+//  Created by 김현철 on 2022/05/10.
 //
 
 import UIKit
