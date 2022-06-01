@@ -12,7 +12,7 @@
         <!--Home-->
         <scene sceneID="2aY-qo-hg7">
             <objects>
-                <viewController storyboardIdentifier="HomeTab" id="JKp-HT-mJx" userLabel="Home" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeTab" id="JKp-HT-mJx" userLabel="Home" customClass="HomeViewContoller" customModule="ShareDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Cqc-Za-1Cy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,6 +41,9 @@
                                     <segment title="모두 보기"/>
                                     <segment title="내 일기 보기"/>
                                 </segments>
+                                <connections>
+                                    <action selector="privateSegmentListenr:" destination="JKp-HT-mJx" eventType="valueChanged" id="xvt-WO-kqK"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tagLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncd-ph-jOb">
                                 <rect key="frame" x="30" y="99" width="354" height="21"/>
@@ -48,7 +51,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <searchBar contentMode="redraw" text="태그 검색" translatesAutoresizingMaskIntoConstraints="NO" id="xRA-ld-GPg">
+                            <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="xRA-ld-GPg">
                                 <rect key="frame" x="0.0" y="167" width="414" height="51"/>
                                 <color key="backgroundColor" red="0.89803916220000002" green="0.89803916220000002" blue="0.89803916220000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" red="0.89803916220000002" green="0.89803916220000002" blue="0.89803916220000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -81,6 +84,11 @@
                     <tabBarItem key="tabBarItem" title="" selectedImage="house.fill" catalog="system" id="7oC-wd-oP3">
                         <imageReference key="image" image="house" catalog="system" symbolScale="default"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="privateSegment" destination="sD4-Qm-NDp" id="dnb-LF-1UP"/>
+                        <outlet property="tagSearchBar" destination="xRA-ld-GPg" id="feN-sS-6Zx"/>
+                        <outlet property="tv" destination="4Aw-DA-MQK" id="0uh-mX-cxg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMt-3A-Dwx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
