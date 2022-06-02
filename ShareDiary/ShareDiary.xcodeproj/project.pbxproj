@@ -10,6 +10,10 @@
 		477506502829C10100C0A93F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4775064F2829C10100C0A93F /* GoogleService-Info.plist */; };
 		478BD7CC2847820A00E74BB7 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478BD7CB2847820A00E74BB7 /* GroupViewController.swift */; };
 		478BD7D82848022100E74BB7 /* BSImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 478BD7D72848022100E74BB7 /* BSImagePicker */; };
+		478BD7E72848B82600E74BB7 /* WriteTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 478BD7E32848B82500E74BB7 /* WriteTab.storyboard */; };
+		478BD7E82848B82600E74BB7 /* WriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478BD7E42848B82500E74BB7 /* WriteCollectionViewCell.swift */; };
+		478BD7E92848B82600E74BB7 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478BD7E52848B82600E74BB7 /* WriteViewController.swift */; };
+		478BD7EA2848B82600E74BB7 /* WriteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478BD7E62848B82600E74BB7 /* WriteCollectionViewCell.xib */; };
 		47AFB4C62829C7B900D1A9F1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 47AFB4C52829C7B900D1A9F1 /* FirebaseAuth */; };
 		47AFB4C82829C7B900D1A9F1 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 47AFB4C72829C7B900D1A9F1 /* FirebaseFirestore */; };
 		47AFB4CA2829C7B900D1A9F1 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 47AFB4C92829C7B900D1A9F1 /* FirebaseFirestoreSwift */; };
@@ -37,6 +41,10 @@
 /* Begin PBXFileReference section */
 		4775064F2829C10100C0A93F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		478BD7CB2847820A00E74BB7 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
+		478BD7E32848B82500E74BB7 /* WriteTab.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WriteTab.storyboard; sourceTree = "<group>"; };
+		478BD7E42848B82500E74BB7 /* WriteCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteCollectionViewCell.swift; sourceTree = "<group>"; };
+		478BD7E52848B82600E74BB7 /* WriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
+		478BD7E62848B82600E74BB7 /* WriteCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WriteCollectionViewCell.xib; sourceTree = "<group>"; };
 		47AFB4CD2829CEBB00D1A9F1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		47AFB4CF2829CEE400D1A9F1 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		47AFB4D12829CEF700D1A9F1 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
@@ -120,6 +128,10 @@
 		47D0B9A72840D24C0098439A /* WriteTab */ = {
 			isa = PBXGroup;
 			children = (
+				478BD7E42848B82500E74BB7 /* WriteCollectionViewCell.swift */,
+				478BD7E62848B82600E74BB7 /* WriteCollectionViewCell.xib */,
+				478BD7E32848B82500E74BB7 /* WriteTab.storyboard */,
+				478BD7E52848B82600E74BB7 /* WriteViewController.swift */,
 			);
 			path = WriteTab;
 			sourceTree = "<group>";
@@ -239,11 +251,13 @@
 				47EB835B2829A43A00B43513 /* LaunchScreen.storyboard in Resources */,
 				47D0B9AA2840D2790098439A /* HomeTab.storyboard in Resources */,
 				47D0B9AC2840D49F0098439A /* GroupTab.storyboard in Resources */,
+				478BD7EA2848B82600E74BB7 /* WriteCollectionViewCell.xib in Resources */,
 				477506502829C10100C0A93F /* GoogleService-Info.plist in Resources */,
 				47D0B9B22840D4E30098439A /* OptionTab.storyboard in Resources */,
 				9B3EEBEA28409E9D00A66908 /* HomeTableCell.xib in Resources */,
 				47EB83582829A43A00B43513 /* Assets.xcassets in Resources */,
 				D8B13146283BDB99000B84AA /* Login.storyboard in Resources */,
+				478BD7E72848B82600E74BB7 /* WriteTab.storyboard in Resources */,
 				47EB83562829A42F00B43513 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,7 +270,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				478BD7CC2847820A00E74BB7 /* GroupViewController.swift in Sources */,
+				478BD7E92848B82600E74BB7 /* WriteViewController.swift in Sources */,
 				47AFB4CE2829CEBB00D1A9F1 /* User.swift in Sources */,
+				478BD7E82848B82600E74BB7 /* WriteCollectionViewCell.swift in Sources */,
 				47AFB4D42829D58600D1A9F1 /* DummyData.swift in Sources */,
 				47EB83532829A42F00B43513 /* ViewController.swift in Sources */,
 				F592537B2846654A000DEF00 /* HomeTableCell.swift in Sources */,
