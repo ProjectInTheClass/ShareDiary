@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		477506502829C10100C0A93F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4775064F2829C10100C0A93F /* GoogleService-Info.plist */; };
+		478BD7CC2847820A00E74BB7 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478BD7CB2847820A00E74BB7 /* GroupViewController.swift */; };
+		478BD7D42847D9DE00E74BB7 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478BD7D32847D9DE00E74BB7 /* WriteViewController.swift */; };
+		478BD7D82848022100E74BB7 /* BSImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 478BD7D72848022100E74BB7 /* BSImagePicker */; };
+		478BD7DB284812D100E74BB7 /* WriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478BD7D9284812D100E74BB7 /* WriteCollectionViewCell.swift */; };
+		478BD7DC284812D100E74BB7 /* WriteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478BD7DA284812D100E74BB7 /* WriteCollectionViewCell.xib */; };
 		47AFB4C62829C7B900D1A9F1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 47AFB4C52829C7B900D1A9F1 /* FirebaseAuth */; };
 		47AFB4C82829C7B900D1A9F1 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 47AFB4C72829C7B900D1A9F1 /* FirebaseFirestore */; };
 		47AFB4CA2829C7B900D1A9F1 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 47AFB4C92829C7B900D1A9F1 /* FirebaseFirestoreSwift */; };
@@ -35,6 +40,10 @@
 
 /* Begin PBXFileReference section */
 		4775064F2829C10100C0A93F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		478BD7CB2847820A00E74BB7 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
+		478BD7D32847D9DE00E74BB7 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
+		478BD7D9284812D100E74BB7 /* WriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCollectionViewCell.swift; sourceTree = "<group>"; };
+		478BD7DA284812D100E74BB7 /* WriteCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WriteCollectionViewCell.xib; sourceTree = "<group>"; };
 		47AFB4CD2829CEBB00D1A9F1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		47AFB4CF2829CEE400D1A9F1 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		47AFB4D12829CEF700D1A9F1 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
@@ -66,6 +75,7 @@
 				47AFB4C62829C7B900D1A9F1 /* FirebaseAuth in Frameworks */,
 				47AFB4CC2829C7B900D1A9F1 /* FirebaseStorage in Frameworks */,
 				47AFB4C82829C7B900D1A9F1 /* FirebaseFirestore in Frameworks */,
+				478BD7D82848022100E74BB7 /* BSImagePicker in Frameworks */,
 				47AFB4CA2829C7B900D1A9F1 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -110,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				47D0B9AB2840D49F0098439A /* GroupTab.storyboard */,
+				478BD7CB2847820A00E74BB7 /* GroupViewController.swift */,
 			);
 			path = GroupTab;
 			sourceTree = "<group>";
@@ -118,6 +129,9 @@
 			isa = PBXGroup;
 			children = (
 				47D0B9AF2840D4DB0098439A /* WriteTab.storyboard */,
+				478BD7D9284812D100E74BB7 /* WriteCollectionViewCell.swift */,
+				478BD7DA284812D100E74BB7 /* WriteCollectionViewCell.xib */,
+				478BD7D32847D9DE00E74BB7 /* WriteViewController.swift */,
 			);
 			path = WriteTab;
 			sourceTree = "<group>";
@@ -186,6 +200,7 @@
 				47AFB4C72829C7B900D1A9F1 /* FirebaseFirestore */,
 				47AFB4C92829C7B900D1A9F1 /* FirebaseFirestoreSwift */,
 				47AFB4CB2829C7B900D1A9F1 /* FirebaseStorage */,
+				478BD7D72848022100E74BB7 /* BSImagePicker */,
 			);
 			productName = ShareDiary;
 			productReference = 47EB834B2829A42F00B43513 /* ShareDiary.app */;
@@ -217,6 +232,7 @@
 			mainGroup = 47EB83422829A42F00B43513;
 			packageReferences = (
 				47AFB4C42829C7B900D1A9F1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				478BD7D62848022100E74BB7 /* XCRemoteSwiftPackageReference "BSImagePicker" */,
 			);
 			productRefGroup = 47EB834C2829A42F00B43513 /* Products */;
 			projectDirPath = "";
@@ -235,6 +251,7 @@
 				47EB835B2829A43A00B43513 /* LaunchScreen.storyboard in Resources */,
 				47D0B9AA2840D2790098439A /* HomeTab.storyboard in Resources */,
 				47D0B9AC2840D49F0098439A /* GroupTab.storyboard in Resources */,
+				478BD7DC284812D100E74BB7 /* WriteCollectionViewCell.xib in Resources */,
 				477506502829C10100C0A93F /* GoogleService-Info.plist in Resources */,
 				47D0B9B22840D4E30098439A /* OptionTab.storyboard in Resources */,
 				9B3EEBEA28409E9D00A66908 /* HomeTableCell.xib in Resources */,
@@ -252,8 +269,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				478BD7CC2847820A00E74BB7 /* GroupViewController.swift in Sources */,
 				47AFB4CE2829CEBB00D1A9F1 /* User.swift in Sources */,
 				47AFB4D42829D58600D1A9F1 /* DummyData.swift in Sources */,
+				478BD7DB284812D100E74BB7 /* WriteCollectionViewCell.swift in Sources */,
 				47EB83532829A42F00B43513 /* ViewController.swift in Sources */,
 				F592537B2846654A000DEF00 /* HomeTableCell.swift in Sources */,
 				47EB834F2829A42F00B43513 /* AppDelegate.swift in Sources */,
@@ -261,6 +280,7 @@
 				F5478BA52846160C00BD2F32 /* HomeViewController.swift in Sources */,
 				47AFB4D02829CEE400D1A9F1 /* Group.swift in Sources */,
 				47EB83512829A42F00B43513 /* SceneDelegate.swift in Sources */,
+				478BD7D42847D9DE00E74BB7 /* WriteViewController.swift in Sources */,
 				47AFB4D22829CEF700D1A9F1 /* Diary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,6 +503,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		478BD7D62848022100E74BB7 /* XCRemoteSwiftPackageReference "BSImagePicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mikaoj/BSImagePicker.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		47AFB4C42829C7B900D1A9F1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -494,6 +522,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		478BD7D72848022100E74BB7 /* BSImagePicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 478BD7D62848022100E74BB7 /* XCRemoteSwiftPackageReference "BSImagePicker" */;
+			productName = BSImagePicker;
+		};
 		47AFB4C52829C7B900D1A9F1 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 47AFB4C42829C7B900D1A9F1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
