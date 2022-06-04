@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 struct Diary : Codable {
     var authorId: String
@@ -25,5 +26,23 @@ extension Encodable {
         guard let object = try? JSONEncoder().encode(self),
               let dictinoary = try? JSONSerialization.jsonObject(with: object, options: []) as? [String: Any] else { return nil }
         return dictinoary
+    }
+}
+
+extension Diary {
+    
+    init?(data: [String: Any]) {
+        guard let authorId = data["authorId"] as? String,
+              let date = data["date"] as? Timestamp,
+              let tag = data["tag"] as? [String],
+              let sharedGroupId = data["sharedGroupId"] as? [String],
+              let imageUrls = data["imageUrls"] as? [String],
+              let videoUrls = data["videoUrls"] as? [String],
+              let text = data["text"] as? String,
+              let emotion = data["emotion"] as? String else {
+            return nil
+        }
+        
+        self.init(authorId: authorId, date: date.dateValue(), tag: tag, sharedGroupId: sharedGroupId, imageUrls: imageUrls, videoUrls: videoUrls, text: text, emotion: emotion)
     }
 }
