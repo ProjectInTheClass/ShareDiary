@@ -110,31 +110,49 @@ class HomeViewContoller: UIViewController {
             }
         )
     }
-}
-
-func firebaseLoad() {
-    db = Firestore.firestore()
     
-    storage = Storage.storage()
     
-    userCollection = db!.collection("users")
-    diaryCollection = db!.collection("diaries")
-    groupCollection = db!.collection("groups")
-    
-    //todo auth 연결 후 다시 적용
-//    uid = FirebaseAuth.Auth.auth().currentUser?.uid
-    uid = "RZ8Vzj8VyzP4mIOmfpPnCJD6qGY2"
-    groupCollection?.whereField("memberId", arrayContains: uid!).getDocuments(){(qs, e) in
-        if let e = e {
-            print(e)
-            groups = []
-        } else {
-            for document in qs!.documents {
-                groups.append(document.documentID)
+    func firebaseLoad() {
+        db = Firestore.firestore()
+        
+        storage = Storage.storage()
+        
+        userCollection = db!.collection("users")
+        diaryCollection = db!.collection("diaries")
+        groupCollection = db!.collection("groups")
+        
+        //todo auth 연결 후 다시 적용
+        //uid = FirebaseAuth.Auth.auth().currentUser?.uid
+        uid = "afUVm4PXoCaxFQNSphCmp5h4W5l1"
+        groupCollection?.whereField("memberId", arrayContains: uid!).getDocuments(){(qs, e) in
+            if let e = e {
+                print(e)
+                groups = []
+            } else {
+                for document in qs!.documents {
+                    groups.append(document.documentID)
+                }
             }
         }
     }
+    
+    func addBlockUser(id: String) {
+        userCollection?.whereField("id", isEqualTo: uid!).getDocuments(){(qs, e) in
+            if let e = e {
+                print(e)
+                groups = []
+            } else {
+                for document in qs!.documents {
+                    document.reference.updateData([
+                        "blockedUserId": FieldValue.arrayUnion([id])
+                    ])
+                }
+            }
+        }
+    }
+    
 }
+
 
 
 
@@ -159,8 +177,6 @@ extension HomeViewContoller: UITableViewDelegate, UITableViewDataSource {
         cell.tagsLabel.text = diary.tag.reduce("", {$0 + " #" + $1})
         cell.timeLabel.text = "최근" // todo 수정
         
-        cell.iv.contentMode = .scaleAspectFit
-        
         let imageRef = storage?.reference(withPath: diary.imageUrls[0])
         imageRef?.getData(maxSize: 10 * 1024 * 1024) { data, error in
             if let error = error {
@@ -184,6 +200,46 @@ extension HomeViewContoller: UITableViewDelegate, UITableViewDataSource {
         cell.isUserInteractionEnabled = false
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if showDiarys[indexPath.row].authorId == uid {
+            let deleteAction = UIContextualAction(style: .destructive, title: "삭제") { action, view, completion in
+                // todo 일기 삭제
+                
+                showDiarys.remove(at: indexPath.row)
+                
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                
+                completion(true)
+            }
+            
+            let editAction = UIContextualAction(style: .normal, title: "수정") { action, view, completion in
+                // 일기 수정
+                completion(true)
+            }
+            
+            let configuration = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+            configuration.performsFirstActionWithFullSwipe = false
+            
+            return configuration
+        } else {
+            let blockAction = UIContextualAction(style: .destructive, title: "차단") { action, view, completion in
+                // 유저 차단
+                self.addBlockUser(id: showDiarys[indexPath.row].authorId)
+                
+                showDiarys.remove(at: indexPath.row)
+                
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                
+                completion(true)
+            }
+            
+            let configuration = UISwipeActionsConfiguration(actions: [blockAction])
+            configuration.performsFirstActionWithFullSwipe = false
+            
+            return configuration
+        }
     }
 }
 
