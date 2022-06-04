@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -51,13 +52,10 @@
                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XXB-xB-Sjx">
-                        <rect key="frame" x="21" y="70" width="300" height="300"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="300" id="Y6x-7c-x8x"/>
-                            <constraint firstAttribute="width" constant="300" id="znO-7K-s8n"/>
-                        </constraints>
-                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l2n-7W-5YA" customClass="ImageSlideshow" customModule="ImageSlideshow">
+                        <rect key="frame" x="20" y="64" width="302" height="318"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="ONt-zd-EBc" secondAttribute="trailing" id="1CV-5k-ETO"/>
@@ -66,29 +64,37 @@
                     <constraint firstItem="Waf-q1-bDH" firstAttribute="bottom" secondItem="wYz-4D-Woa" secondAttribute="bottom" id="NN3-VD-Jgk"/>
                     <constraint firstItem="zec-b0-UTq" firstAttribute="top" secondItem="ONt-zd-EBc" secondAttribute="bottom" constant="30" id="OUl-Rj-s4t"/>
                     <constraint firstItem="wYz-4D-Woa" firstAttribute="leading" secondItem="mmk-fR-QwM" secondAttribute="leading" constant="20" symbolic="YES" id="PK3-Eh-b30"/>
+                    <constraint firstItem="Qaq-1J-UO6" firstAttribute="top" secondItem="l2n-7W-5YA" secondAttribute="bottom" constant="8" id="TfO-sh-ZbM"/>
                     <constraint firstItem="ONt-zd-EBc" firstAttribute="leading" secondItem="mmk-fR-QwM" secondAttribute="leadingMargin" id="Tvc-eX-nNa"/>
                     <constraint firstItem="nxq-I9-kQQ" firstAttribute="bottom" secondItem="Waf-q1-bDH" secondAttribute="bottom" id="Vyp-ar-yRE"/>
-                    <constraint firstItem="Qaq-1J-UO6" firstAttribute="top" secondItem="XXB-xB-Sjx" secondAttribute="bottom" constant="20" id="acj-ew-oJA"/>
+                    <constraint firstItem="Qaq-1J-UO6" firstAttribute="top" secondItem="l2n-7W-5YA" secondAttribute="bottom" constant="8" symbolic="YES" id="e8U-bL-mT1"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="zec-b0-UTq" secondAttribute="trailing" id="eAx-UO-Rm4"/>
-                    <constraint firstItem="XXB-xB-Sjx" firstAttribute="top" secondItem="wYz-4D-Woa" secondAttribute="bottom" constant="14" id="efo-9E-ElC"/>
+                    <constraint firstItem="l2n-7W-5YA" firstAttribute="trailing" secondItem="nxq-I9-kQQ" secondAttribute="trailing" id="ers-Hl-zRi"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="zec-b0-UTq" secondAttribute="bottom" constant="-0.5" id="gIw-Ql-Ihf"/>
+                    <constraint firstItem="l2n-7W-5YA" firstAttribute="top" secondItem="wYz-4D-Woa" secondAttribute="bottom" constant="8" symbolic="YES" id="hl1-hx-f6a"/>
                     <constraint firstAttribute="trailing" secondItem="nxq-I9-kQQ" secondAttribute="trailing" constant="20" symbolic="YES" id="pOD-lE-O6U"/>
                     <constraint firstItem="wYz-4D-Woa" firstAttribute="top" secondItem="mmk-fR-QwM" secondAttribute="top" constant="20" symbolic="YES" id="rZO-Ge-bG8"/>
                     <constraint firstItem="Waf-q1-bDH" firstAttribute="leading" secondItem="wYz-4D-Woa" secondAttribute="trailing" constant="8" symbolic="YES" id="s5X-sT-VyB"/>
                     <constraint firstItem="zec-b0-UTq" firstAttribute="leading" secondItem="mmk-fR-QwM" secondAttribute="leadingMargin" id="tre-3D-cjh"/>
-                    <constraint firstItem="XXB-xB-Sjx" firstAttribute="centerX" secondItem="mmk-fR-QwM" secondAttribute="centerX" id="wTD-6v-2P6"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Qaq-1J-UO6" secondAttribute="trailing" constant="20" id="xzx-iS-LQY"/>
+                    <constraint firstItem="Qaq-1J-UO6" firstAttribute="leading" secondItem="l2n-7W-5YA" secondAttribute="leading" id="yYB-0T-C8w"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="commentLabel" destination="ONt-zd-EBc" id="fL8-v0-oHi"/>
                 <outlet property="dateLabel" destination="Qaq-1J-UO6" id="DJb-cM-obo"/>
                 <outlet property="emojiLabel" destination="wYz-4D-Woa" id="H0n-f3-g96"/>
-                <outlet property="iv" destination="XXB-xB-Sjx" id="Lcy-Q0-qxB"/>
+                <outlet property="imageSlideShow" destination="l2n-7W-5YA" id="fge-uw-omh"/>
                 <outlet property="tagsLabel" destination="zec-b0-UTq" id="MC9-Kw-Cy6"/>
                 <outlet property="timeLabel" destination="nxq-I9-kQQ" id="77s-5e-3mn"/>
                 <outlet property="userNameLabel" destination="Waf-q1-bDH" id="EXU-y5-HtT"/>
             </connections>
-            <point key="canvasLocation" x="-226" y="31"/>
+            <point key="canvasLocation" x="-226.08695652173915" y="30.46875"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

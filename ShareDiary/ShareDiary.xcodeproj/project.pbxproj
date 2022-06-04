@@ -36,6 +36,10 @@
 		D8B13148283BDBBF000B84AA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13147283BDBBF000B84AA /* LoginViewController.swift */; };
 		F5478BA52846160C00BD2F32 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5478BA42846160C00BD2F32 /* HomeViewController.swift */; };
 		F592537B2846654A000DEF00 /* HomeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F592537A2846654A000DEF00 /* HomeTableCell.swift */; };
+		F5FFEDDA284BD638003205E1 /* ImageSlideshow in Frameworks */ = {isa = PBXBuildFile; productRef = F5FFEDD9284BD638003205E1 /* ImageSlideshow */; };
+		F5FFEDDD284BDA7F003205E1 /* ImageSlideshow/Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F5FFEDDC284BDA7F003205E1 /* ImageSlideshow/Alamofire */; };
+		F5FFEDDF284BDA7F003205E1 /* ImageSlideshow/Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = F5FFEDDE284BDA7F003205E1 /* ImageSlideshow/Kingfisher */; };
+		F5FFEDE1284BDA7F003205E1 /* ImageSlideshow/SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = F5FFEDE0284BDA7F003205E1 /* ImageSlideshow/SDWebImage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,9 +78,13 @@
 			files = (
 				47AFB4C62829C7B900D1A9F1 /* FirebaseAuth in Frameworks */,
 				47AFB4CC2829C7B900D1A9F1 /* FirebaseStorage in Frameworks */,
+				F5FFEDDD284BDA7F003205E1 /* ImageSlideshow/Alamofire in Frameworks */,
+				F5FFEDE1284BDA7F003205E1 /* ImageSlideshow/SDWebImage in Frameworks */,
 				47AFB4C82829C7B900D1A9F1 /* FirebaseFirestore in Frameworks */,
+				F5FFEDDA284BD638003205E1 /* ImageSlideshow in Frameworks */,
 				478BD7D82848022100E74BB7 /* BSImagePicker in Frameworks */,
 				47AFB4CA2829C7B900D1A9F1 /* FirebaseFirestoreSwift in Frameworks */,
+				F5FFEDDF284BDA7F003205E1 /* ImageSlideshow/Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +209,10 @@
 				47AFB4C92829C7B900D1A9F1 /* FirebaseFirestoreSwift */,
 				47AFB4CB2829C7B900D1A9F1 /* FirebaseStorage */,
 				478BD7D72848022100E74BB7 /* BSImagePicker */,
+				F5FFEDD9284BD638003205E1 /* ImageSlideshow */,
+				F5FFEDDC284BDA7F003205E1 /* ImageSlideshow/Alamofire */,
+				F5FFEDDE284BDA7F003205E1 /* ImageSlideshow/Kingfisher */,
+				F5FFEDE0284BDA7F003205E1 /* ImageSlideshow/SDWebImage */,
 			);
 			productName = ShareDiary;
 			productReference = 47EB834B2829A42F00B43513 /* ShareDiary.app */;
@@ -233,6 +245,8 @@
 			packageReferences = (
 				47AFB4C42829C7B900D1A9F1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				478BD7D62848022100E74BB7 /* XCRemoteSwiftPackageReference "BSImagePicker" */,
+				F5FFEDD8284BD638003205E1 /* XCRemoteSwiftPackageReference "ImageSlideshow" */,
+				F5FFEDDB284BDA7F003205E1 /* XCRemoteSwiftPackageReference "ImageSlideshow" */,
 			);
 			productRefGroup = 47EB834C2829A42F00B43513 /* Products */;
 			projectDirPath = "";
@@ -519,6 +533,22 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		F5FFEDD8284BD638003205E1 /* XCRemoteSwiftPackageReference "ImageSlideshow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/zvonicek/ImageSlideshow";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		F5FFEDDB284BDA7F003205E1 /* XCRemoteSwiftPackageReference "ImageSlideshow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/zvonicek/ImageSlideshow";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -546,6 +576,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 47AFB4C42829C7B900D1A9F1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		F5FFEDD9284BD638003205E1 /* ImageSlideshow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F5FFEDD8284BD638003205E1 /* XCRemoteSwiftPackageReference "ImageSlideshow" */;
+			productName = ImageSlideshow;
+		};
+		F5FFEDDC284BDA7F003205E1 /* ImageSlideshow/Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F5FFEDDB284BDA7F003205E1 /* XCRemoteSwiftPackageReference "ImageSlideshow" */;
+			productName = ImageSlideshow/Alamofire;
+		};
+		F5FFEDDE284BDA7F003205E1 /* ImageSlideshow/Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F5FFEDDB284BDA7F003205E1 /* XCRemoteSwiftPackageReference "ImageSlideshow" */;
+			productName = ImageSlideshow/Kingfisher;
+		};
+		F5FFEDE0284BDA7F003205E1 /* ImageSlideshow/SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F5FFEDDB284BDA7F003205E1 /* XCRemoteSwiftPackageReference "ImageSlideshow" */;
+			productName = ImageSlideshow/SDWebImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

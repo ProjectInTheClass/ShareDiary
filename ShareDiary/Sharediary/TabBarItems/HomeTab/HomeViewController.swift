@@ -6,6 +6,9 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 
+import ImageSlideshow
+import ImageSlideshowAlamofire
+
 var db: Firestore? = nil
 var userCollection: CollectionReference? = nil
 var diaryCollection: CollectionReference? = nil
@@ -23,7 +26,7 @@ var privateDiarys: [Diary] = []
 
 var isPrivate: Bool = false
 
-class HomeViewContoller: UIViewController {
+class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
     
     @IBOutlet weak var tagSearchBar: UISearchBar!
 
@@ -177,14 +180,30 @@ extension HomeViewContoller: UITableViewDelegate, UITableViewDataSource {
         cell.tagsLabel.text = diary.tag.reduce("", {$0 + " #" + $1})
         cell.timeLabel.text = "최근" // todo 수정
         
-        let imageRef = storage?.reference(withPath: diary.imageUrls[0])
-        imageRef?.getData(maxSize: 10 * 1024 * 1024) { data, error in
-            if let error = error {
-                print(error)
-              } else {
-                  cell.iv.image = UIImage(data: data!)
-              }
+        cell.imageSlideShow.slideshowInterval = 2.0
+        
+        cell.imageSlideShow.activityIndicator = DefaultActivityIndicator()
+        cell.imageSlideShow.delegate = self
+        
+        for i in diary.imageUrls {
+            storage?.reference(withPath: i).downloadURL() { (url, error) in
+                if (cell.imageSlideShow.images.count >= diary.imageUrls.count) {
+                    cell.imageSlideShow.setImageInputs(cell.imageSlideShow.images)
+                    return
+                }
+                cell.imageSlideShow.setImageInputs(cell.imageSlideShow.images + [AlamofireSource(url: url!)])
+                print(cell.imageSlideShow.images.count)
+            }
         }
+    
+//        let imageRef = storage?.reference(withPath: diary.imageUrls[0])
+//        imageRef?.getData(maxSize: 10 * 1024 * 1024) { data, error in
+//            if let error = error {
+//                print(error)
+//              } else {
+//                  cell.imageSlideShow.setImageInputs(storage?.reference(withPath: ))
+//              }
+//        }
         
         userCollection?.whereField("id", isEqualTo: diary.authorId).getDocuments(completion: {(qs, e) in
             if let e = e {
@@ -206,38 +225,38 @@ extension HomeViewContoller: UITableViewDelegate, UITableViewDataSource {
         if showDiarys[indexPath.row].authorId == uid {
             let deleteAction = UIContextualAction(style: .destructive, title: "삭제") { action, view, completion in
                 // todo 일기 삭제
-                
+
                 showDiarys.remove(at: indexPath.row)
-                
+
                 tableView.deleteRows(at: [indexPath], with: .automatic)
-                
+
                 completion(true)
             }
-            
+
             let editAction = UIContextualAction(style: .normal, title: "수정") { action, view, completion in
                 // 일기 수정
                 completion(true)
             }
-            
+
             let configuration = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
             configuration.performsFirstActionWithFullSwipe = false
-            
+
             return configuration
         } else {
             let blockAction = UIContextualAction(style: .destructive, title: "차단") { action, view, completion in
                 // 유저 차단
                 self.addBlockUser(id: showDiarys[indexPath.row].authorId)
-                
+
                 showDiarys.remove(at: indexPath.row)
-                
+
                 tableView.deleteRows(at: [indexPath], with: .automatic)
-                
+
                 completion(true)
             }
-            
+
             let configuration = UISwipeActionsConfiguration(actions: [blockAction])
             configuration.performsFirstActionWithFullSwipe = false
-            
+
             return configuration
         }
     }
