@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 class GroupViewController: UIViewController {
     
     var cellData: [CellData] = []
@@ -77,22 +78,29 @@ class GroupViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "취소", style: .cancel))
             alert.addAction(UIAlertAction(title: "생성", style: .default, handler: { action in
                 if let gname = alert.textFields?.first?.text {
-                    let check = UIAlertController(title: "그룹 생성", message: "\(gname) 그룹을 생성합니다.", preferredStyle: .alert)
-                    check.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
-                    check.addAction(UIAlertAction(title: "생성", style: .default, handler: { action in
-                        let newGroup = Group(groupName: gname, memberId: [self.uid!], inviteCode: "", createdAt: .now)
-                        self.groupRef?.addDocument(data: newGroup.asDictionary!, completion: { err in
-                            if let err = err {
-                                print("err = \(err)");
-                            } else {
-                                self.loadData()
-                                let success = UIAlertController(title: "그룹이 생성되었습니다.", message: "", preferredStyle: .alert)
-                                success.addAction(UIAlertAction(title: "확인", style: .cancel))
-                                self.present(success, animated: true)
+                    if gname != "Private" {
+                        let check = UIAlertController(title: "그룹 생성", message: "\(gname) 그룹을 생성합니다.", preferredStyle: .alert)
+                        check.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+                        check.addAction(UIAlertAction(title: "생성", style: .default, handler: { action in
+                            let newGroup = Group(groupName: gname, memberId: [self.uid!], inviteCode: "", createdAt: .now)
+                            let ret = try? self.groupRef?.addDocument(from: newGroup) {err in
+                                if let err = err {
+                                    print("err = \(err)")
+                                } else {
+                                    self.loadData()
+                                    let success = UIAlertController(title: "그룹이 생성되었습니다.", message: "", preferredStyle: .alert)
+                                    success.addAction(UIAlertAction(title: "확인", style: .cancel))
+                                    self.present(success, animated: true)
+                                }
                             }
-                        })
-                    }))
-                    self.present(check, animated: true)
+                        }))
+                        self.present(check, animated: true)
+                    } else {
+                        print("생성실패")
+                        let fail = UIAlertController(title: "생성 실패", message: "\(gname) 이름으로 그룹을 생성할 수 없습니다.", preferredStyle: .alert)
+                        fail.addAction(UIAlertAction(title: "확인", style: .cancel))
+                        self.present(fail, animated: true)
+                    }
                 }
             }))
             self.present(alert, animated: true)
