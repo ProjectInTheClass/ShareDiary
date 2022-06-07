@@ -73,45 +73,48 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
         self.tv.dataSource = self
         self.tagSearchBar.delegate = self
         self.tagSearchBar.placeholder = "태그를 입력해 주세요."
-        
-        // dload diaroies
-        diaryLoad()
     }
     
     func diaryLoad() {
-        diaryCollection?.whereField("sharedGroupId", arrayContains: "gUw4ilJm3pJH8dCP7doE").getDocuments(completion: {
-            (qs, e) in
-            print(qs?.count)
-                if let e = e {
-                    print(e)
-                } else {
-                    for document in qs!.documents {
-                        diarysAll.append(
-                            Diary(authorId: document["authorId"] as! String,
-                                  date: Date(),
-                                  tag: document["tag"] as! [String],
-                                  sharedGroupId: document["sharedGroupId"] as! [String],
-                                  imageUrls: document["imageUrls"] as! [String],
-                                  videoUrls: document["videoUrls"] as! [String],
-                                  text: document["text"] as! String,
-                                  emotion: document["emotion"] as! String)
-                        )
+        for i in 0...(groups.count - 1) {
+            diaryCollection?.whereField("sharedGroupId", arrayContains: groups[i]).getDocuments(completion: {
+                (qs, e) in
+                    if let e = e {
+                        print(e)
+                    } else {
+                        for document in qs!.documents {
+                            if (!diarysAll.contains(where: {$0.id == document["id"] as! String})) {
+                                diarysAll.append(
+                                    Diary(
+                                        id: document["id"] as! String,
+                                            authorId: document["authorId"] as! String,
+                                          date: Date(),
+                                          tag: document["tag"] as! [String],
+                                          sharedGroupId: document["sharedGroupId"] as! [String],
+                                          imageUrls: document["imageUrls"] as! [String],
+                                          videoUrls: document["videoUrls"] as! [String],
+                                          text: document["text"] as! String,
+                                          emotion: document["emotion"] as! String)
+                                )
+                                print("append", document["id"] as! String)
+                            }
+                        }
                     }
-                }
-            
-                for diary in diarysAll {
-                    if (diary.authorId == uid) {
-                        privateDiarys.append(diary)
+                
+                    for diary in diarysAll {
+                        if (diary.authorId == uid) {
+                            privateDiarys.append(diary)
+                        }
                     }
+                    
+                    showDiarys = diarysAll
+                
+                    privateDiarys = diarysAll.filter({$0.authorId == uid!})
+                    
+                    self.tv.reloadData()
                 }
-                
-                showDiarys = diarysAll
-            
-                privateDiarys = diarysAll.filter({$0.authorId == uid!})
-                
-                self.tv.reloadData()
-            }
-        )
+            )
+        }
     }
     
     
@@ -126,16 +129,19 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
         
         //todo auth 연결 후 다시 적용
         //uid = FirebaseAuth.Auth.auth().currentUser?.uid
-        uid = "afUVm4PXoCaxFQNSphCmp5h4W5l1"
+        uid = "vqe2pHo1KhONLfFadMwtpBlF37t2"
         groupCollection?.whereField("memberId", arrayContains: uid!).getDocuments(){(qs, e) in
             if let e = e {
                 print(e)
                 groups = []
             } else {
+                print(qs!.documents.count)
                 for document in qs!.documents {
                     groups.append(document.documentID)
                 }
             }
+            
+            self.diaryLoad()
         }
     }
     
@@ -186,12 +192,21 @@ extension HomeViewContoller: UITableViewDelegate, UITableViewDataSource {
         cell.imageSlideShow.delegate = self
         
         for i in diary.imageUrls {
-            storage?.reference(withPath: i).downloadURL() { (url, error) in
+            var str = i
+            if (!i.starts(with: "images/")){
+                str = "images/" + i;
+            }
+            
+            storage?.reference(withPath: str).downloadURL() { (url, error) in
                 if (cell.imageSlideShow.images.count >= diary.imageUrls.count) {
                     cell.imageSlideShow.setImageInputs(cell.imageSlideShow.images)
                     return
                 }
-                cell.imageSlideShow.setImageInputs(cell.imageSlideShow.images + [AlamofireSource(url: url!)])
+                
+                if(url != nil) {
+                    cell.imageSlideShow.setImageInputs(cell.imageSlideShow.images + [AlamofireSource(url: url!)])
+                }
+                
                 print(cell.imageSlideShow.images.count)
             }
         }
