@@ -25,6 +25,7 @@
 		47D0B9AA2840D2790098439A /* HomeTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47D0B9A92840D2790098439A /* HomeTab.storyboard */; };
 		47D0B9AC2840D49F0098439A /* GroupTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47D0B9AB2840D49F0098439A /* GroupTab.storyboard */; };
 		47D0B9B22840D4E30098439A /* OptionTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47D0B9B12840D4E30098439A /* OptionTab.storyboard */; };
+		47D6514B284D147200548E82 /* WSTagsField in Frameworks */ = {isa = PBXBuildFile; productRef = 47D6514A284D147200548E82 /* WSTagsField */; };
 		47EB834F2829A42F00B43513 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EB834E2829A42F00B43513 /* AppDelegate.swift */; };
 		47EB83512829A42F00B43513 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EB83502829A42F00B43513 /* SceneDelegate.swift */; };
 		47EB83532829A42F00B43513 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EB83522829A42F00B43513 /* ViewController.swift */; };
@@ -76,6 +77,7 @@
 				47AFB4CC2829C7B900D1A9F1 /* FirebaseStorage in Frameworks */,
 				47AFB4C82829C7B900D1A9F1 /* FirebaseFirestore in Frameworks */,
 				478BD7D82848022100E74BB7 /* BSImagePicker in Frameworks */,
+				47D6514B284D147200548E82 /* WSTagsField in Frameworks */,
 				47AFB4CA2829C7B900D1A9F1 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,6 +203,7 @@
 				47AFB4C92829C7B900D1A9F1 /* FirebaseFirestoreSwift */,
 				47AFB4CB2829C7B900D1A9F1 /* FirebaseStorage */,
 				478BD7D72848022100E74BB7 /* BSImagePicker */,
+				47D6514A284D147200548E82 /* WSTagsField */,
 			);
 			productName = ShareDiary;
 			productReference = 47EB834B2829A42F00B43513 /* ShareDiary.app */;
@@ -233,6 +236,7 @@
 			packageReferences = (
 				47AFB4C42829C7B900D1A9F1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				478BD7D62848022100E74BB7 /* XCRemoteSwiftPackageReference "BSImagePicker" */,
+				47D65149284D147200548E82 /* XCRemoteSwiftPackageReference "WSTagsField" */,
 			);
 			productRefGroup = 47EB834C2829A42F00B43513 /* Products */;
 			projectDirPath = "";
@@ -519,6 +523,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		47D65149284D147200548E82 /* XCRemoteSwiftPackageReference "WSTagsField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/whitesmith/WSTagsField";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -546,6 +558,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 47AFB4C42829C7B900D1A9F1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		47D6514A284D147200548E82 /* WSTagsField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47D65149284D147200548E82 /* XCRemoteSwiftPackageReference "WSTagsField" */;
+			productName = WSTagsField;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

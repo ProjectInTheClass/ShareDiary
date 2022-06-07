@@ -9,6 +9,7 @@ import Foundation
 import FirebaseFirestore
 
 struct Diary : Codable {
+    var id: String
     var authorId: String
     var date: Date
     var tag: [String]
@@ -32,7 +33,8 @@ extension Encodable {
 extension Diary {
     
     init?(data: [String: Any]) {
-        guard let authorId = data["authorId"] as? String,
+        guard let id = data["id"] as? String,
+              let authorId = data["authorId"] as? String,
               let date = data["date"] as? Timestamp,
               let tag = data["tag"] as? [String],
               let sharedGroupId = data["sharedGroupId"] as? [String],
@@ -43,6 +45,6 @@ extension Diary {
             return nil
         }
         
-        self.init(authorId: authorId, date: date.dateValue(), tag: tag, sharedGroupId: sharedGroupId, imageUrls: imageUrls, videoUrls: videoUrls, text: text, emotion: emotion)
+        self.init(id: id, authorId: authorId, date: date.dateValue(), tag: tag, sharedGroupId: sharedGroupId, imageUrls: imageUrls, videoUrls: videoUrls, text: text, emotion: emotion)
     }
 }
