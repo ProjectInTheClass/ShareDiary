@@ -82,7 +82,8 @@ class GroupViewController: UIViewController {
                         let check = UIAlertController(title: "그룹 생성", message: "\(gname) 그룹을 생성합니다.", preferredStyle: .alert)
                         check.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
                         check.addAction(UIAlertAction(title: "생성", style: .default, handler: { action in
-                            let newGroup = Group(groupName: gname, memberId: [self.uid!], inviteCode: "", createdAt: .now)
+                            let newGid = self.groupRef?.document().documentID
+                            let newGroup = Group(id: newGid!, groupName: gname, memberId: [self.uid!], inviteCode: "", createdAt: .now)
                             let ret = try? self.groupRef?.addDocument(from: newGroup) {err in
                                 if let err = err {
                                     print("err = \(err)")
