@@ -17,36 +17,61 @@ class LoginViewController: UIViewController{
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     
+    var name: String!
     
     
     @IBAction func LoginButton(_ sender: Any) {
-        Auth.auth().signIn(withEmail: email.text!, password: password.text!) { (user,error) in
-            if user != nil{
-                print("Login success!")
-                /*let vcName = self.storyboard?.instantiateViewController(withIdentifier: "MainView")
-                vcName?.modalPresentationStyle = .fullScreen
-                vcName?.modalTransitionStyle = .crossDissolve
-                self.present(vcName!, animated: true, completion: nil)*/
+        if Auth.auth().currentUser?.isEmailVerified != nil{
+            Auth.auth().signIn(withEmail: email.text!, password: password.text!) { (user,error) in
+                if user != nil{
+                    print("Login success!")
+                    /*let vcName = self.storyboard?.instantiateViewController(withIdentifier: "MainView")
+                    vcName?.modalPresentationStyle = .fullScreen
+                    vcName?.modalTransitionStyle = .crossDissolve
+                    self.present(vcName!, animated: true, completion: nil)*/
+                    let DB = Firestore.firestore()
+                    let Current_User = Auth.auth().currentUser
+                    
+                    if self.name != nil{
+                        DB.collection("users").document(Current_User!.uid).setData(
+                            ["id" : Current_User!.uid,
+                             "useremail" : self.email.text!,
+                             "name" : self.name!,
+                             "blockedUserId" : [],
+                        ])
+                    }
+                }
+                else{
+                    print("login fail")
+                    let LoginFailAlert = UIAlertController(title: "알림", message: "존재하지 않는 유저 정보입니다.", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
+                    LoginFailAlert.addAction(ok)
+                    self.present(LoginFailAlert, animated: true, completion: nil)
+                }
             }
-            else{
-                print("login fail")
-                let LoginFailAlert = UIAlertController(title: "알림", message: "존재하지 않는 유저 정보입니다.", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
-                LoginFailAlert.addAction(ok)
-                self.present(LoginFailAlert, animated: true, completion: nil)
-            }
-            //#TODO login fail reason
+        }
+        else{
+            print("Verificaiton yet")
         }
     }
     
     @IBAction func SigninButton(_ sender: Any) {
         Auth.auth().createUser(withEmail: email.text!, password: password.text!) { (user,error) in
             if user != nil{
-                print("Signin Success")
-                let SigninSuccessAlert = UIAlertController(title: "알림", message: "회원가입이 완료되었습니다.", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
-                SigninSuccessAlert.addAction(ok)
-                self.present(SigninSuccessAlert, animated: true, completion: nil)
+                Auth.auth().currentUser?.sendEmailVerification(){ error in
+                    let EnterNameTextFieldAlert = UIAlertController(title: "이름 입력", message: "앱 내에서 보여질 이름을 정해주세요. 입력을 완료하시면 인증 이메일을 확인해주세요",preferredStyle: .alert)
+                    EnterNameTextFieldAlert.addTextField{ (NameTextField) in
+                        NameTextField.placeholder="이름 입력"
+                        
+                    }
+                    let okToEnterName = UIAlertAction(title: "확인", style: .default){ (ok) in
+                        self.name = EnterNameTextFieldAlert.textFields?[0].text
+                    }
+                    EnterNameTextFieldAlert.addAction(okToEnterName)
+                        
+                    self.present(EnterNameTextFieldAlert, animated: true, completion: nil)
+                    
+                }
             }
             else{
                 print("Signin Fail")
@@ -55,7 +80,6 @@ class LoginViewController: UIViewController{
                 SigninFailAlert.addAction(ok)
                 self.present(SigninFailAlert, animated: true, completion: nil)
             }
-            //#TODO signin fail reason
         }
     }
     
@@ -87,3 +111,5 @@ class LoginViewController: UIViewController{
         super.viewDidLoad()
     }
 }
+
+
