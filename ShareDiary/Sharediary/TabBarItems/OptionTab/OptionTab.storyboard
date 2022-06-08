@@ -11,7 +11,7 @@
         <!--option-->
         <scene sceneID="Lj9-7v-xoH">
             <objects>
-                <viewController storyboardIdentifier="OptionTab" id="Ayx-8F-FZg" userLabel="option" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OptionTab" id="Ayx-8F-FZg" userLabel="option" customClass="OptionViewController" customModule="ShareDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="15t-mA-xhd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,18 +34,84 @@
                                     <constraint firstAttribute="bottom" secondItem="gq2-c1-LQh" secondAttribute="bottom" constant="10" id="kLu-3f-r06"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qdd-P3-T3Y">
-                                <rect key="frame" x="0.0" y="99" width="414" height="763"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="hRd-c5-a3K">
+                                <rect key="frame" x="5" y="114" width="404" height="124"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="97" translatesAutoresizingMaskIntoConstraints="NO" id="BEj-8K-iAN">
+                                        <rect key="frame" x="5" y="0.0" width="394" height="24"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="버전정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gat-RZ-9fE">
+                                                <rect key="frame" x="0.0" y="0.0" width="250.5" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="v.1.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G86-0h-fZs">
+                                                <rect key="frame" x="347.5" y="0.0" width="46.5" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="G86-0h-fZs" secondAttribute="trailing" constant="5" id="5wG-ar-N2b"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fkD-pw-Z0x">
+                                        <rect key="frame" x="5" y="43" width="394" height="31"/>
+                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="로그아웃">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
+                                        </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="LogOutButton:" destination="Ayx-8F-FZg" eventType="touchUpInside" id="327-V1-DZP"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VQd-q1-mu6">
+                                        <rect key="frame" x="5" y="93" width="394" height="31"/>
+                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="회원탈퇴">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
+                                        </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="WithdrawalButton:" destination="Ayx-8F-FZg" eventType="touchUpInside" id="4Cb-nM-xVR"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="BEj-8K-iAN" firstAttribute="leading" secondItem="hRd-c5-a3K" secondAttribute="leading" constant="5" id="03w-au-UZm"/>
+                                    <constraint firstAttribute="trailing" secondItem="fkD-pw-Z0x" secondAttribute="trailing" constant="5" id="1Rx-j4-DFS"/>
+                                    <constraint firstAttribute="trailing" secondItem="VQd-q1-mu6" secondAttribute="trailing" constant="5" id="6tg-GV-vWp"/>
+                                    <constraint firstItem="VQd-q1-mu6" firstAttribute="leading" secondItem="hRd-c5-a3K" secondAttribute="leading" constant="5" id="Cya-0Q-NPa"/>
+                                    <constraint firstAttribute="trailing" secondItem="BEj-8K-iAN" secondAttribute="trailing" constant="5" id="oSy-g2-QnI"/>
+                                    <constraint firstItem="fkD-pw-Z0x" firstAttribute="leading" secondItem="hRd-c5-a3K" secondAttribute="leading" constant="5" id="zly-hZ-gQi"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7tl-XQ-6jb"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
-                            <constraint firstItem="qdd-P3-T3Y" firstAttribute="top" secondItem="odc-F5-caP" secondAttribute="bottom" id="5xU-uW-j4G"/>
-                            <constraint firstItem="7tl-XQ-6jb" firstAttribute="trailing" secondItem="qdd-P3-T3Y" secondAttribute="trailing" id="Ssg-35-zuZ"/>
-                            <constraint firstItem="qdd-P3-T3Y" firstAttribute="leading" secondItem="7tl-XQ-6jb" secondAttribute="leading" id="sba-We-uRF"/>
-                            <constraint firstItem="7tl-XQ-6jb" firstAttribute="bottom" secondItem="qdd-P3-T3Y" secondAttribute="bottom" id="yc3-4H-o6f"/>
+                            <constraint firstItem="hRd-c5-a3K" firstAttribute="leading" secondItem="7tl-XQ-6jb" secondAttribute="leading" constant="5" id="L8O-5t-5TV"/>
+                            <constraint firstItem="7tl-XQ-6jb" firstAttribute="trailing" secondItem="hRd-c5-a3K" secondAttribute="trailing" constant="5" id="RFs-bQ-CeK"/>
+                            <constraint firstItem="hRd-c5-a3K" firstAttribute="top" secondItem="odc-F5-caP" secondAttribute="bottom" constant="15" id="TgI-Uo-VHX"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="gearshape" catalog="system" selectedImage="gearshape.fill" id="qqB-9L-aZ3"/>
@@ -58,8 +124,8 @@
     <resources>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="gearshape.fill" catalog="system" width="128" height="121"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
