@@ -33,6 +33,7 @@
 		47EB83582829A43A00B43513 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47EB83572829A43A00B43513 /* Assets.xcassets */; };
 		47EB835B2829A43A00B43513 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47EB83592829A43A00B43513 /* LaunchScreen.storyboard */; };
 		9B3EEBEA28409E9D00A66908 /* HomeTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B3EEBE928409E9D00A66908 /* HomeTableCell.xib */; };
+		D813A704284FA5C0006E2D3C /* OptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D813A703284FA5C0006E2D3C /* OptionViewController.swift */; };
 		D8B13146283BDB99000B84AA /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8B13145283BDB99000B84AA /* Login.storyboard */; };
 		D8B13148283BDBBF000B84AA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13147283BDBBF000B84AA /* LoginViewController.swift */; };
 		F5478BA52846160C00BD2F32 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5478BA42846160C00BD2F32 /* HomeViewController.swift */; };
@@ -66,6 +67,7 @@
 		47EB835A2829A43A00B43513 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		47EB835C2829A43A00B43513 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B3EEBE928409E9D00A66908 /* HomeTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HomeTableCell.xib; path = ShareDiary/TabBarItems/HomeTab/HomeTableCell.xib; sourceTree = SOURCE_ROOT; };
+		D813A703284FA5C0006E2D3C /* OptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OptionViewController.swift; path = Sharediary/TabBarItems/OptionTab/OptionViewController.swift; sourceTree = SOURCE_ROOT; };
 		D8B13145283BDB99000B84AA /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Login.storyboard; path = Sharediary/Login.storyboard; sourceTree = SOURCE_ROOT; };
 		D8B13147283BDBBF000B84AA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Sharediary/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
 		F5478BA42846160C00BD2F32 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Sharediary/TabBarItems/HomeTab/HomeViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				47D0B9B12840D4E30098439A /* OptionTab.storyboard */,
+				D813A703284FA5C0006E2D3C /* OptionViewController.swift */,
 			);
 			path = OptionTab;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				D8B13148283BDBBF000B84AA /* LoginViewController.swift in Sources */,
 				F5478BA52846160C00BD2F32 /* HomeViewController.swift in Sources */,
 				47AFB4D02829CEE400D1A9F1 /* Group.swift in Sources */,
+				D813A704284FA5C0006E2D3C /* OptionViewController.swift in Sources */,
 				47EB83512829A42F00B43513 /* SceneDelegate.swift in Sources */,
 				47AFB4D22829CEF700D1A9F1 /* Diary.swift in Sources */,
 			);
@@ -537,6 +541,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		47D65149284D147200548E82 /* XCRemoteSwiftPackageReference "WSTagsField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/whitesmith/WSTagsField";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		F5FFEDD8284BD638003205E1 /* XCRemoteSwiftPackageReference "ImageSlideshow" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/zvonicek/ImageSlideshow";
@@ -551,14 +563,6 @@
 			requirement = {
 				branch = master;
 				kind = branch;
-			};
-		};
-		47D65149284D147200548E82 /* XCRemoteSwiftPackageReference "WSTagsField" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/whitesmith/WSTagsField";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -589,6 +593,11 @@
 			package = 47AFB4C42829C7B900D1A9F1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
 		};
+		47D6514A284D147200548E82 /* WSTagsField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47D65149284D147200548E82 /* XCRemoteSwiftPackageReference "WSTagsField" */;
+			productName = WSTagsField;
+		};
 		F5FFEDD9284BD638003205E1 /* ImageSlideshow */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F5FFEDD8284BD638003205E1 /* XCRemoteSwiftPackageReference "ImageSlideshow" */;
@@ -608,11 +617,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F5FFEDDB284BDA7F003205E1 /* XCRemoteSwiftPackageReference "ImageSlideshow" */;
 			productName = ImageSlideshow/SDWebImage;
-		};
-		47D6514A284D147200548E82 /* WSTagsField */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 47D65149284D147200548E82 /* XCRemoteSwiftPackageReference "WSTagsField" */;
-			productName = WSTagsField;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
