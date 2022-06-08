@@ -278,12 +278,13 @@ extension HomeViewContoller: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if showDiarys[indexPath.row].authorId == uid {
             let deleteAction = UIContextualAction(style: .destructive, title: "삭제") { action, view, completion in
-                // todo 일기 삭제
-
+                diaryCollection?.document(showDiarys[indexPath.row].id).delete();
+                
                 showDiarys.remove(at: indexPath.row)
+                selectedDiarys.remove(at: indexPath.row)
 
                 tableView.deleteRows(at: [indexPath], with: .automatic)
-
+                
                 completion(true)
             }
 
@@ -310,6 +311,7 @@ extension HomeViewContoller: UITableViewDelegate, UITableViewDataSource {
                 self.addBlockUser(id: showDiarys[indexPath.row].authorId)
 
                 showDiarys.remove(at: indexPath.row)
+                selectedDiarys.remove(at: indexPath.row)
 
                 tableView.deleteRows(at: [indexPath], with: .automatic)
 
