@@ -288,7 +288,15 @@ extension HomeViewContoller: UITableViewDelegate, UITableViewDataSource {
             }
 
             let editAction = UIContextualAction(style: .normal, title: "수정") { action, view, completion in
-                // 일기 수정
+                let storyboard: UIStoryboard = UIStoryboard(name: "WriteTab",bundle: nil)
+                guard let secondViewController = storyboard.instantiateViewController(withIdentifier: "WriteTab") as? WriteViewController else { return }
+                        // 화면 전환 애니메이션 설정
+                        secondViewController.modalTransitionStyle = .coverVertical
+                
+                        // 전환된 화면이 보여지는 방법 설정 (fullScreen)
+                        secondViewController.modalPresentationStyle = .fullScreen
+                        self.present(secondViewController, animated: true, completion: nil)
+                
                 completion(true)
             }
 
