@@ -9,6 +9,8 @@ import FirebaseStorage
 import ImageSlideshow
 import ImageSlideshowAlamofire
 
+import FINNBottomSheet
+
 var db: Firestore? = nil
 var userCollection: CollectionReference? = nil
 var diaryCollection: CollectionReference? = nil
@@ -18,10 +20,14 @@ var storage: Storage? = nil
 
 var uid: String? = nil
 var groups: [String] = []
+var groupsName: [String] = []
+
+var selectedGroups: [String] = []
 
 var showDiarys: [Diary] = []
 
 var diarysAll: [Diary] = []
+var selectedDiarys: [Diary] = []
 var privateDiarys: [Diary] = []
 
 var isPrivate: Bool = false
@@ -34,12 +40,44 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
     
     @IBOutlet weak var tv: UITableView!
     
+    @IBAction func groupViewClicked(_ sender: UIButton) {
+        var pickerData : [[String:String]] = []
+        
+        for i in 0...(groups.count - 1) {
+            pickerData.append([
+                "value": groups[i],
+                "display": groupsName[i]
+            ])
+        }
+                
+        MultiPickerDialog().show(title: "그룹 선택",doneButtonTitle:"선택 완료", cancelButtonTitle:"취소" ,options: pickerData, selected:  selectedGroups) {
+                    values -> Void in
+                    //print("SELECTED \(value), \(showName)")
+                    print("callBack \(values)")
+                    var finalText = ""
+                    selectedGroups.removeAll()
+            
+                    for (index,value) in values.enumerated(){
+                        selectedGroups.append(value["value"]!)
+                        finalText = finalText  + value["display"]! + (index < values.count - 1 ? " , ": "")
+                        print(finalText)
+                    }
+            
+                    sender.titleLabel?.text = finalText
+            
+            selectedDiarys = diarysAll.filter({(d: Diary) in selectedGroups.contains(where: {(gid: String) in d.sharedGroupId.contains(where: {$0 == gid})})})
+            showDiarys = selectedDiarys
+            
+            self.tv.reloadData()
+                }
+    }
+    
     @IBAction func privateSegmentListenr(_ sender: Any) {
         switch privateSegment.selectedSegmentIndex
         {
             case 0:
                 isPrivate = false
-                showDiarys = diarysAll
+                showDiarys = selectedDiarys
                 self.tv.reloadData()
                 break
             case 1:
@@ -75,7 +113,7 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
         self.tagSearchBar.placeholder = "태그를 입력해 주세요."
     }
     
-    func diaryLoad() {
+func diaryLoad() {
         for i in 0...(groups.count - 1) {
             diaryCollection?.whereField("sharedGroupId", arrayContains: groups[i]).getDocuments(completion: {
                 (qs, e) in
@@ -107,8 +145,8 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
                         }
                     }
                     
-                    showDiarys = diarysAll
-                
+                selectedDiarys = diarysAll
+                showDiarys = selectedDiarys
                     privateDiarys = diarysAll.filter({$0.authorId == uid!})
                     
                     self.tv.reloadData()
@@ -138,6 +176,7 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
                 print(qs!.documents.count)
                 for document in qs!.documents {
                     groups.append(document.documentID)
+                    groupsName.append(document.data()["groupName"] as! String)
                 }
             }
             
@@ -275,6 +314,7 @@ extension HomeViewContoller: UITableViewDelegate, UITableViewDataSource {
             return configuration
         }
     }
+    
 }
 
 extension HomeViewContoller: UISearchBarDelegate {
@@ -296,3 +336,5 @@ extension HomeViewContoller: UISearchBarDelegate {
         self.tv.reloadData()
     }
 }
+
+

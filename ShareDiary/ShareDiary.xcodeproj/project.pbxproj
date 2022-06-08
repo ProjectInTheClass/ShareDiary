@@ -35,6 +35,8 @@
 		9B3EEBEA28409E9D00A66908 /* HomeTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B3EEBE928409E9D00A66908 /* HomeTableCell.xib */; };
 		D8B13146283BDB99000B84AA /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8B13145283BDB99000B84AA /* Login.storyboard */; };
 		D8B13148283BDBBF000B84AA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13147283BDBBF000B84AA /* LoginViewController.swift */; };
+		F53F42E42850FCA400F4B9F6 /* FINNBottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = F53F42E32850FCA400F4B9F6 /* FINNBottomSheet */; };
+		F53F42E62850FDC900F4B9F6 /* MultiPickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53F42E52850FDC900F4B9F6 /* MultiPickerDialog.swift */; };
 		F5478BA52846160C00BD2F32 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5478BA42846160C00BD2F32 /* HomeViewController.swift */; };
 		F592537B2846654A000DEF00 /* HomeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F592537A2846654A000DEF00 /* HomeTableCell.swift */; };
 		F5FFEDDA284BD638003205E1 /* ImageSlideshow in Frameworks */ = {isa = PBXBuildFile; productRef = F5FFEDD9284BD638003205E1 /* ImageSlideshow */; };
@@ -68,6 +70,7 @@
 		9B3EEBE928409E9D00A66908 /* HomeTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HomeTableCell.xib; path = ShareDiary/TabBarItems/HomeTab/HomeTableCell.xib; sourceTree = SOURCE_ROOT; };
 		D8B13145283BDB99000B84AA /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Login.storyboard; path = Sharediary/Login.storyboard; sourceTree = SOURCE_ROOT; };
 		D8B13147283BDBBF000B84AA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Sharediary/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
+		F53F42E52850FDC900F4B9F6 /* MultiPickerDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MultiPickerDialog.swift; path = Sharediary/TabBarItems/HomeTab/MultiPickerDialog.swift; sourceTree = SOURCE_ROOT; };
 		F5478BA42846160C00BD2F32 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Sharediary/TabBarItems/HomeTab/HomeViewController.swift; sourceTree = SOURCE_ROOT; };
 		F592537A2846654A000DEF00 /* HomeTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeTableCell.swift; path = Sharediary/TabBarItems/HomeTab/HomeTableCell.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -87,6 +90,7 @@
 				47D6514B284D147200548E82 /* WSTagsField in Frameworks */,
 				47AFB4CA2829C7B900D1A9F1 /* FirebaseFirestoreSwift in Frameworks */,
 				F5FFEDDF284BDA7F003205E1 /* ImageSlideshow/Kingfisher in Frameworks */,
+				F53F42E42850FCA400F4B9F6 /* FINNBottomSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +126,7 @@
 				47D0B9A92840D2790098439A /* HomeTab.storyboard */,
 				F5478BA42846160C00BD2F32 /* HomeViewController.swift */,
 				F592537A2846654A000DEF00 /* HomeTableCell.swift */,
+				F53F42E52850FDC900F4B9F6 /* MultiPickerDialog.swift */,
 			);
 			path = HomeTab;
 			sourceTree = "<group>";
@@ -216,6 +221,7 @@
 				F5FFEDDE284BDA7F003205E1 /* ImageSlideshow/Kingfisher */,
 				F5FFEDE0284BDA7F003205E1 /* ImageSlideshow/SDWebImage */,
 				47D6514A284D147200548E82 /* WSTagsField */,
+				F53F42E32850FCA400F4B9F6 /* FINNBottomSheet */,
 			);
 			productName = ShareDiary;
 			productReference = 47EB834B2829A42F00B43513 /* ShareDiary.app */;
@@ -251,6 +257,7 @@
 				47D65149284D147200548E82 /* XCRemoteSwiftPackageReference "WSTagsField" */,
 				F5FFEDD8284BD638003205E1 /* XCRemoteSwiftPackageReference "ImageSlideshow" */,
 				F5FFEDDB284BDA7F003205E1 /* XCRemoteSwiftPackageReference "ImageSlideshow" */,
+				F53F42E22850FCA400F4B9F6 /* XCRemoteSwiftPackageReference "BottomSheet" */,
 			);
 			productRefGroup = 47EB834C2829A42F00B43513 /* Products */;
 			projectDirPath = "";
@@ -294,6 +301,7 @@
 				47AFB4D42829D58600D1A9F1 /* DummyData.swift in Sources */,
 				47EB83532829A42F00B43513 /* ViewController.swift in Sources */,
 				F592537B2846654A000DEF00 /* HomeTableCell.swift in Sources */,
+				F53F42E62850FDC900F4B9F6 /* MultiPickerDialog.swift in Sources */,
 				47EB834F2829A42F00B43513 /* AppDelegate.swift in Sources */,
 				D8B13148283BDBBF000B84AA /* LoginViewController.swift in Sources */,
 				F5478BA52846160C00BD2F32 /* HomeViewController.swift in Sources */,
@@ -537,6 +545,22 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		47D65149284D147200548E82 /* XCRemoteSwiftPackageReference "WSTagsField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/whitesmith/WSTagsField";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		F53F42E22850FCA400F4B9F6 /* XCRemoteSwiftPackageReference "BottomSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/finn-no/BottomSheet.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		F5FFEDD8284BD638003205E1 /* XCRemoteSwiftPackageReference "ImageSlideshow" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/zvonicek/ImageSlideshow";
@@ -551,14 +575,6 @@
 			requirement = {
 				branch = master;
 				kind = branch;
-			};
-		};
-		47D65149284D147200548E82 /* XCRemoteSwiftPackageReference "WSTagsField" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/whitesmith/WSTagsField";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -589,6 +605,16 @@
 			package = 47AFB4C42829C7B900D1A9F1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
 		};
+		47D6514A284D147200548E82 /* WSTagsField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47D65149284D147200548E82 /* XCRemoteSwiftPackageReference "WSTagsField" */;
+			productName = WSTagsField;
+		};
+		F53F42E32850FCA400F4B9F6 /* FINNBottomSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F53F42E22850FCA400F4B9F6 /* XCRemoteSwiftPackageReference "BottomSheet" */;
+			productName = FINNBottomSheet;
+		};
 		F5FFEDD9284BD638003205E1 /* ImageSlideshow */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F5FFEDD8284BD638003205E1 /* XCRemoteSwiftPackageReference "ImageSlideshow" */;
@@ -608,11 +634,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F5FFEDDB284BDA7F003205E1 /* XCRemoteSwiftPackageReference "ImageSlideshow" */;
 			productName = ImageSlideshow/SDWebImage;
-		};
-		47D6514A284D147200548E82 /* WSTagsField */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 47D65149284D147200548E82 /* XCRemoteSwiftPackageReference "WSTagsField" */;
-			productName = WSTagsField;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
