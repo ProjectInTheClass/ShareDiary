@@ -120,13 +120,14 @@ func diaryLoad() {
                     if let e = e {
                         print(e)
                     } else {
+//                        (document["date"] as! Timestamp).
                         for document in qs!.documents {
                             if (!diarysAll.contains(where: {$0.id == document["id"] as! String})) {
                                 diarysAll.append(
                                     Diary(
                                         id: document["id"] as! String,
                                             authorId: document["authorId"] as! String,
-                                          date: Date(),
+                                            date: Date(timeIntervalSince1970: TimeInterval((document["date"] as! Timestamp).seconds)),
                                           tag: document["tag"] as! [String],
                                           sharedGroupId: document["sharedGroupId"] as! [String],
                                           imageUrls: document["imageUrls"] as! [String],
@@ -343,7 +344,12 @@ extension HomeViewContoller: UISearchBarDelegate {
                 showDiarys = diarysAll
             }
         }
+        self.tagSearchBar.resignFirstResponder()
         self.tv.reloadData()
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        self.tagSearchBar.resignFirstResponder()
     }
 }
 
