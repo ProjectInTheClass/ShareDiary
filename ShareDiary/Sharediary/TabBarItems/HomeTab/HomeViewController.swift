@@ -139,6 +139,9 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
     }
     
 func diaryLoad() {
+    if(groups.count < 1) {
+        return
+    }
         for i in 0...(groups.count - 1) {
             diaryCollection?.whereField("sharedGroupId", arrayContains: groups[i]).getDocuments(completion: {
                 (qs, e) in
@@ -192,8 +195,11 @@ func diaryLoad() {
         groupCollection = db!.collection("groups")
         
         //todo auth 연결 후 다시 적용
-        //uid = FirebaseAuth.Auth.auth().currentUser?.uid
-        uid = "vqe2pHo1KhONLfFadMwtpBlF37t2"
+        uid = FirebaseAuth.Auth.auth().currentUser?.uid
+        if (uid == nil) {
+            uid = "vqe2pHo1KhONLfFadMwtpBlF37t2"
+        }
+        
         groupCollection?.whereField("memberId", arrayContains: uid!).getDocuments(){(qs, e) in
             if let e = e {
                 print(e)
