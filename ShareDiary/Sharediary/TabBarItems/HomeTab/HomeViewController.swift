@@ -32,6 +32,8 @@ var privateDiarys: [Diary] = []
 
 var isPrivate: Bool = false
 
+var loadCnt = 0
+
 class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
     
     @IBOutlet weak var tagSearchBar: UISearchBar!
@@ -97,6 +99,10 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadCnt += 1
+        
+        print("viewDidLoad")
+        
         // firestore load
         firebaseLoad()
         
@@ -115,9 +121,18 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
         self.tv.dataSource = self
         self.tagSearchBar.delegate = self
         self.tagSearchBar.placeholder = "태그를 입력해 주세요."
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if (loadCnt == 1) {
+            loadCnt += 1
+            return
+        }
+        loadCnt += 1
+        
+        print("viewWillAppear")
         
         groups = []
         groupsName = []
