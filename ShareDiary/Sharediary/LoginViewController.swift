@@ -15,6 +15,11 @@ import FirebaseCore
 
 class LoginViewController: UIViewController{
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("touch")
+        self.view.endEditing(true)
+    }
+    
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     
