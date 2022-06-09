@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+
 class GroupViewController: UIViewController {
     
     var cellData: [CellData] = []
@@ -84,7 +85,7 @@ class GroupViewController: UIViewController {
                         check.addAction(UIAlertAction(title: "생성", style: .default, handler: { action in
                             let newGid = self.groupRef?.document().documentID
                             let newGroup = Group(id: newGid!, groupName: gname, memberId: [self.uid!], inviteCode: "", createdAt: .now)
-                            let ret = try? self.groupRef?.addDocument(from: newGroup) {err in
+                            let ret = try? self.groupRef?.document(newGid!).setData(from: newGroup) {err in
                                 if let err = err {
                                     print("err = \(err)")
                                 } else {
