@@ -201,7 +201,7 @@ func diaryLoad() {
                         }
                     }
                     
-                
+                diarysAll = diarysAll.filter({!blockedUid.contains($0.authorId)})
                 
                 selectedDiarys = diarysAll
                 showDiarys = selectedDiarys
@@ -256,9 +256,11 @@ func diaryLoad() {
                         }
                     }
                 }
+                
+                self.diaryLoad()
             })
             
-            self.diaryLoad()
+            
         }
 
 
