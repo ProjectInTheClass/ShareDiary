@@ -253,6 +253,23 @@ class WriteViewController: UIViewController {
     @IBAction func writeBtnTabbed(_ sender: Any) {
         // save diary
         print("writeBtnTabbed")
+        if images.count == 0 {
+            showToast(message: "이미지를 넣어주세요.")
+            return
+        }
+        if textView.text == "" {
+            showToast(message: "내용을 입력해주세요")
+            return
+        }
+        if tagTextField.text == "" {
+            showToast(message: "태그를 입력해주세요.")
+            return
+        }
+        if emojiTextField.text == "" {
+            showToast(message: "기분을 입력해주세요")
+            return
+        }
+
         if let tmp = ddid {
             print("update Diary \(tmp)")
             
@@ -284,6 +301,9 @@ class WriteViewController: UIViewController {
         }
         let newDiary = Diary(id: ddid!, authorId: uid!, date: datePicker.date, tag: tagTextField.text?.components(separatedBy: [",", " ", "#"]).filter{$0 != ""} as! [String], sharedGroupId: self.tv.indexPathsForSelectedRows!.map{myGroup[$0.row].id}, imageUrls: images.enumerated().map{"\(ddid!)_\($0.offset).jpg"}, videoUrls: [], text: textView.text, emotion: emojiTextField.text!)
         
+        
+            
+            
         if let ret = try? diaryRef?.document(ddid!).setData(from: newDiary) {
             print("일기쓰기 성공, ret = \(ret)")
             print("newDiary = \(newDiary)")
