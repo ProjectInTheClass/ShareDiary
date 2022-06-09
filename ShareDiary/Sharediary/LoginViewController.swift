@@ -55,7 +55,7 @@ class LoginViewController: UIViewController{
                         DB.collection("groups").document(newGid).setData(
                             ["id": newGid,
                              "groupName": "Private",
-                             "memberId": Current_User!.uid,
+                             "memberId": [Current_User!.uid],
                              "inviteCode": " ",
                              "createdAt": Date.now,
                             ])
