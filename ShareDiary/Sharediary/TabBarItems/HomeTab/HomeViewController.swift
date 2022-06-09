@@ -68,6 +68,8 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
             selectedDiarys = diarysAll.filter({(d: Diary) in selectedGroups.contains(where: {(gid: String) in d.sharedGroupId.contains(where: {$0 == gid})})})
             showDiarys = selectedDiarys
             
+            sortShowDiaries()
+            
             self.tv.reloadData()
                 }
     }
@@ -78,11 +80,13 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
             case 0:
                 isPrivate = false
                 showDiarys = selectedDiarys
+                sortShowDiaries()
                 self.tv.reloadData()
                 break
             case 1:
                 isPrivate = true
                 showDiarys = privateDiarys
+                sortShowDiaries()
                 self.tv.reloadData()
                 break
             default:
@@ -170,6 +174,7 @@ func diaryLoad() {
                 showDiarys = selectedDiarys
                     privateDiarys = diarysAll.filter({$0.authorId == uid!})
                     
+                    sortShowDiaries()
                     self.tv.reloadData()
                 }
             )
@@ -371,12 +376,19 @@ extension HomeViewContoller: UISearchBarDelegate {
             }
         }
         self.tagSearchBar.resignFirstResponder()
+        
+        sortShowDiaries()
+        
         self.tv.reloadData()
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         self.tagSearchBar.resignFirstResponder()
     }
+}
+
+func sortShowDiaries() {
+    showDiarys.sort(by: {$0.date > $1.date})
 }
 
 
