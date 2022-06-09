@@ -10,6 +10,7 @@ import ImageSlideshow
 import ImageSlideshowAlamofire
 
 import FINNBottomSheet
+import simd
 
 var db: Firestore? = nil
 var userCollection: CollectionReference? = nil
@@ -19,6 +20,8 @@ var groupCollection: CollectionReference? = nil
 var storage: Storage? = nil
 
 var uid: String? = nil
+var blockedUid: [String] = []
+
 var groups: [String] = []
 var groupsName: [String] = []
 
@@ -76,6 +79,8 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
             
             sortShowDiaries()
             
+            recentStr = Array.init(repeating: [:], count: showDiarys.count)
+            recentName.removeAll()
             self.tv.reloadData()
                 }
     }
@@ -87,12 +92,16 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
                 isPrivate = false
                 showDiarys = selectedDiarys
                 sortShowDiaries()
+            recentStr = Array.init(repeating: [:], count: showDiarys.count)
+            recentName.removeAll()
                 self.tv.reloadData()
                 break
             case 1:
                 isPrivate = true
                 showDiarys = privateDiarys
                 sortShowDiaries()
+            recentName.removeAll()
+            recentStr = Array.init(repeating: [:], count: showDiarys.count)
                 self.tv.reloadData()
                 break
             default:
@@ -134,9 +143,9 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
             return
         }
         loadCnt += 1
-        
+
         print("viewWillAppear")
-        
+
         groups = []
         groupsName = []
 
@@ -150,14 +159,16 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
         
         // firestore load
         firebaseLoad()
-        
+
         self.tagSearchBar.placeholder = "태그를 입력해 주세요."
     }
-    
+
 func diaryLoad() {
     if(groups.count < 1) {
         return
     }
+    print("blocked!!")
+    print(blockedUid)
         for i in 0...(groups.count - 1) {
             diaryCollection?.whereField("sharedGroupId", arrayContains: groups[i]).getDocuments(completion: {
                 (qs, e) in
@@ -165,8 +176,9 @@ func diaryLoad() {
                         print(e)
                     } else {
 //                        (document["date"] as! Timestamp).
+                        
                         for document in qs!.documents {
-                            if (!diarysAll.contains(where: {$0.id == document["id"] as! String})) {
+                            if (!diarysAll.contains(where: {$0.id == document["id"] as! String}) && !blockedUid.contains(document["authorId"] as! String)) {
                                 diarysAll.append(
                                     Diary(
                                         id: document["id"] as! String,
@@ -189,11 +201,15 @@ func diaryLoad() {
                         }
                     }
                     
+                
+                
                 selectedDiarys = diarysAll
                 showDiarys = selectedDiarys
                     privateDiarys = diarysAll.filter({$0.authorId == uid!})
                     
                     sortShowDiaries()
+                recentStr = Array.init(repeating: [:], count: showDiarys.count)
+                recentName.removeAll()
                     self.tv.reloadData()
                 }
             )
@@ -228,8 +244,24 @@ func diaryLoad() {
                 }
             }
             
+            blockedUid.removeAll()
+            userCollection?.whereField("id", isEqualTo: uid!).getDocuments(completion: {(qs, e) in
+                if let e = e {
+                    print(e)
+                } else {
+                    for document in qs!.documents {
+                        let tmp: [String] = document.data()["blockedUserId"] as! [String]
+                        for i in tmp {
+                            blockedUid.append(i)
+                        }
+                    }
+                }
+            })
+            
             self.diaryLoad()
         }
+
+
     }
     
     func addBlockUser(id: String) {
@@ -250,7 +282,8 @@ func diaryLoad() {
 }
 
 
-
+var recentStr : [[Int:String]] = []
+var recentName : [Int:String] = [:]
 
 extension HomeViewContoller: UITableViewDelegate, UITableViewDataSource {
     // 셀의 개수
@@ -258,32 +291,24 @@ extension HomeViewContoller: UITableViewDelegate, UITableViewDataSource {
         return showDiarys.count
     }
     
+
+    
     // 각 셀에 대한 설정
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tv.dequeueReusableCell(withIdentifier: "HomeTableCell", for: indexPath) as! HomeTableCell
         
         let diary = showDiarys[indexPath.row]
         
-        cell.commentLabel.text = diary.text
+        var flag1 = false
+        var flag2 = false
         
-        let dateString = diary.date.description.localizedLowercase
-        print(diary.text)
-        print(dateString)
-        let endIdx: String.Index = dateString.index(dateString.startIndex, offsetBy: 10)
-        cell.dateLabel.text = String(dateString[...endIdx])
-        cell.emojiLabel.text = diary.emotion
-        cell.tagsLabel.text = diary.tag.reduce("", {$0 + " #" + $1})
-        cell.timeLabel.text = "최근" // todo 수정
+        print("!!!!!" + diary.text)
         
-        cell.imageSlideShow.slideshowInterval = 2.0
+        cell.imageSlideShow.setImageInputs([])
+//        print(String(indexPath.row) + "images are")
+//        print(cell.imageSlideShow.images)
         
-        cell.imageSlideShow.activityIndicator = DefaultActivityIndicator()
-        cell.imageSlideShow.delegate = self
-        
-        print(diary.text)
-        print(diary.imageUrls)
-        
-        var flag = false
+        var cnt = 0
         
         for i in diary.imageUrls {
             var str = i
@@ -291,26 +316,84 @@ extension HomeViewContoller: UITableViewDelegate, UITableViewDataSource {
                 str = "images/" + i;
             }
             
-            if (!flag) {
-                flag = true
-                cell.imageSlideShow.setImageInputs([])
-            }
+            recentStr[indexPath.row][cnt] = str
+            cnt += 1
             
             storage?.reference(withPath: str).downloadURL() { (url, error) in
-                if (cell.imageSlideShow.images.count >= diary.imageUrls.count) {
-                    print("cell.imageSlideShow.images.count >= diary.imageUrls.count")
-                    cell.imageSlideShow.setImageInputs(cell.imageSlideShow.images)
+//                if (cell.imageSlideShow.images.count >= diary.imageUrls.count) {
+//                    print("cell.imageSlideShow.images.count >= diary.imageUrls.count")
+//                    cell.imageSlideShow.setImageInputs(cell.imageSlideShow.images)
+//                    return
+//                }
+                
+                if (!flag1) {
+                    flag1 = true
+                    cell.imageSlideShow.setImageInputs([])
+//                    print("flag is now true")
+                }
+                
+                if(!recentStr[indexPath.row].contains(where: {$1 == str})){
                     return
                 }
                 
                 if(url != nil) {
-                    print("url != nil")
+//                    print("url != nil")
                     cell.imageSlideShow.setImageInputs(cell.imageSlideShow.images + [AlamofireSource(url: url!)])
                 } else {
-                    print("url == nil !!!!!!!!!!!!!!!!!")
+//                    print("url == nil !!!!!!!!!!!!!!!!!")
                 }
             }
         }
+        
+        cell.commentLabel.text = diary.text
+        
+        let dateString = diary.date.description.localizedLowercase
+//        print(diary.text)
+//        print(dateString)
+        let endIdx: String.Index = dateString.index(dateString.startIndex, offsetBy: 10)
+        cell.dateLabel.text = String(dateString[...endIdx])
+        cell.emojiLabel.text = diary.emotion
+//        print(diary.emotion)
+        cell.tagsLabel.text = diary.tag.reduce("", {$0 + " #" + $1})
+//        print(diary.tag.reduce("", {$0 + " #" + $1}))
+        cell.timeLabel.text = "최근" // todo 수정
+        
+        cell.imageSlideShow.slideshowInterval = 2.0
+        
+        cell.imageSlideShow.activityIndicator = DefaultActivityIndicator()
+        cell.imageSlideShow.delegate = self
+        
+//        print(diary.text)
+//        print(diary.imageUrls)
+        
+        
+        recentName[indexPath.row] = diary.authorId
+        
+        userCollection?.whereField("id", isEqualTo: diary.authorId).getDocuments(completion: {(qs, e) in
+//            print("diary.authorId is " + diary.authorId)
+            
+            if (!flag2) {
+                flag2 = true
+            } else {
+                return
+            }
+            
+            if (diary.authorId != recentName[indexPath.row]) {
+                return
+            }
+            
+            if let e = e {
+                print(e)
+                cell.userNameLabel.text = ""
+            } else {
+                for document in qs!.documents {
+//                    print("username is " + (document.data()["username"] as! String))
+                    cell.userNameLabel.text =  document.data()["username"] as! String
+                }
+            }
+        })
+        
+
     
 //        let imageRef = storage?.reference(withPath: diary.imageUrls[0])
 //        imageRef?.getData(maxSize: 10 * 1024 * 1024) { data, error in
@@ -320,17 +403,6 @@ extension HomeViewContoller: UITableViewDelegate, UITableViewDataSource {
 //                  cell.imageSlideShow.setImageInputs(storage?.reference(withPath: ))
 //              }
 //        }
-        
-        userCollection?.whereField("id", isEqualTo: diary.authorId).getDocuments(completion: {(qs, e) in
-            if let e = e {
-                print(e)
-                cell.userNameLabel.text = ""
-            } else {
-                for document in qs!.documents {
-                    cell.userNameLabel.text =  document.data()["username"] as! String
-                }
-            }
-        })
         
         cell.isUserInteractionEnabled = false
         
@@ -413,6 +485,8 @@ extension HomeViewContoller: UISearchBarDelegate {
         
         sortShowDiaries()
         
+        recentStr = Array.init(repeating: [:], count: showDiarys.count)
+        recentName.removeAll()
         self.tv.reloadData()
     }
     
@@ -422,7 +496,8 @@ extension HomeViewContoller: UISearchBarDelegate {
 }
 
 func sortShowDiaries() {
-    showDiarys.sort(by: {$0.date > $1.date})
+    showDiarys = showDiarys.sorted(by: {$0.date > $1.date})
+//    showDiarys = showDiarys.reversed()
 }
 
 
