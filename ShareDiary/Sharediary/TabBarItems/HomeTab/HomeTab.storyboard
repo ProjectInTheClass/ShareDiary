@@ -36,7 +36,7 @@
                                 </constraints>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="sD4-Qm-NDp">
-                                <rect key="frame" x="30" y="128" width="354" height="32"/>
+                                <rect key="frame" x="30" y="101" width="354" height="32"/>
                                 <segments>
                                     <segment title="모두 보기"/>
                                     <segment title="내 일기 보기"/>
@@ -45,23 +45,29 @@
                                     <action selector="privateSegmentListenr:" destination="JKp-HT-mJx" eventType="valueChanged" id="xvt-WO-kqK"/>
                                 </connections>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tagLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncd-ph-jOb">
-                                <rect key="frame" x="30" y="99" width="354" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="xRA-ld-GPg">
-                                <rect key="frame" x="0.0" y="167" width="414" height="51"/>
+                                <rect key="frame" x="0.0" y="177" width="414" height="51"/>
                                 <color key="backgroundColor" red="0.89803916220000002" green="0.89803916220000002" blue="0.89803916220000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" red="0.89803916220000002" green="0.89803916220000002" blue="0.89803916220000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="barTintColor" systemColor="systemGray5Color"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="4Aw-DA-MQK">
-                                <rect key="frame" x="0.0" y="218" width="414" height="644"/>
+                                <rect key="frame" x="0.0" y="228" width="414" height="634"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJm-D2-XDP">
+                                <rect key="frame" x="30" y="140" width="354" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="354" id="666-uJ-gYE"/>
+                                </constraints>
+                                <color key="tintColor" red="0.87391489739999995" green="0.62960386280000002" blue="0.51785892249999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="모아 보고 싶은 그룹을 선택해주세요. (클릭)"/>
+                                <connections>
+                                    <action selector="groupViewClicked:" destination="JKp-HT-mJx" eventType="touchUpInside" id="Adw-fe-p5Z"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="50z-rG-7om"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
@@ -69,16 +75,15 @@
                             <constraint firstItem="xRA-ld-GPg" firstAttribute="trailing" secondItem="50z-rG-7om" secondAttribute="trailing" id="20k-zz-fnf"/>
                             <constraint firstItem="4Aw-DA-MQK" firstAttribute="trailing" secondItem="50z-rG-7om" secondAttribute="trailing" id="55c-Q8-Nik"/>
                             <constraint firstItem="4Aw-DA-MQK" firstAttribute="top" secondItem="xRA-ld-GPg" secondAttribute="bottom" id="Bhn-bl-9rH"/>
+                            <constraint firstItem="sD4-Qm-NDp" firstAttribute="top" secondItem="GPb-6w-jgI" secondAttribute="bottom" constant="10" id="GQy-Zm-W4c"/>
                             <constraint firstItem="50z-rG-7om" firstAttribute="bottom" secondItem="4Aw-DA-MQK" secondAttribute="bottom" id="H8d-jY-eUQ"/>
                             <constraint firstItem="xRA-ld-GPg" firstAttribute="leading" secondItem="50z-rG-7om" secondAttribute="leading" id="K2v-18-CBJ"/>
                             <constraint firstItem="50z-rG-7om" firstAttribute="trailing" secondItem="sD4-Qm-NDp" secondAttribute="trailing" constant="30" id="Kij-h2-R1M"/>
-                            <constraint firstItem="ncd-ph-jOb" firstAttribute="leading" secondItem="50z-rG-7om" secondAttribute="leading" constant="30" id="Pay-jc-TlM"/>
-                            <constraint firstItem="xRA-ld-GPg" firstAttribute="top" secondItem="sD4-Qm-NDp" secondAttribute="bottom" constant="8" id="QWP-Y7-D91"/>
                             <constraint firstItem="sD4-Qm-NDp" firstAttribute="leading" secondItem="50z-rG-7om" secondAttribute="leading" constant="30" id="QZe-j2-IeD"/>
-                            <constraint firstItem="ncd-ph-jOb" firstAttribute="top" secondItem="GPb-6w-jgI" secondAttribute="bottom" constant="8" id="Ses-EW-xQc"/>
-                            <constraint firstItem="sD4-Qm-NDp" firstAttribute="top" secondItem="ncd-ph-jOb" secondAttribute="bottom" constant="8" id="jpd-f5-A6Q"/>
+                            <constraint firstItem="kJm-D2-XDP" firstAttribute="centerX" secondItem="50z-rG-7om" secondAttribute="centerX" id="cuP-TK-ld9"/>
+                            <constraint firstItem="xRA-ld-GPg" firstAttribute="top" secondItem="sD4-Qm-NDp" secondAttribute="bottom" constant="45" id="gVV-gc-vdd"/>
+                            <constraint firstItem="kJm-D2-XDP" firstAttribute="top" secondItem="sD4-Qm-NDp" secondAttribute="bottom" constant="8" symbolic="YES" id="j6H-pB-JoP"/>
                             <constraint firstItem="4Aw-DA-MQK" firstAttribute="leading" secondItem="50z-rG-7om" secondAttribute="leading" id="pgQ-xU-zao"/>
-                            <constraint firstItem="50z-rG-7om" firstAttribute="trailing" secondItem="ncd-ph-jOb" secondAttribute="trailing" constant="30" id="zTO-eo-dFu"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" selectedImage="house.fill" catalog="system" id="7oC-wd-oP3">
@@ -92,12 +97,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMt-3A-Dwx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="119" y="1"/>
+            <point key="canvasLocation" x="118.84057971014494" y="0.6696428571428571"/>
         </scene>
     </scenes>
     <resources>
-        <image name="house" catalog="system" width="128" height="106"/>
-        <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="house" catalog="system" width="32" height="32"/>
+        <image name="house.fill" catalog="system" width="32" height="32"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

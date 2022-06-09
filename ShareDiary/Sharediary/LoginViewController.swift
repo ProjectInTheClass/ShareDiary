@@ -11,6 +11,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseCore
 
 class LoginViewController: UIViewController{
     
@@ -21,37 +22,41 @@ class LoginViewController: UIViewController{
     
     
     @IBAction func LoginButton(_ sender: Any) {
-        if Auth.auth().currentUser?.isEmailVerified != nil{
-            Auth.auth().signIn(withEmail: email.text!, password: password.text!) { (user,error) in
-                if user != nil{
+        Auth.auth().signIn(withEmail: email.text!, password: password.text!) { (user,error) in
+            if user != nil{
+                if ((Auth.auth().currentUser?.isEmailVerified) != nil){
+                    
                     print("Login success!")
-                    /*let vcName = self.storyboard?.instantiateViewController(withIdentifier: "MainView")
-                    vcName?.modalPresentationStyle = .fullScreen
-                    vcName?.modalTransitionStyle = .crossDissolve
-                    self.present(vcName!, animated: true, completion: nil)*/
+                    
+                    let storyboard: UIStoryboard = UIStoryboard(name: "Main",bundle: nil)
+                    let mainView = storyboard.instantiateInitialViewController()
+                    mainView?.modalPresentationStyle = .fullScreen
+                    mainView?.modalTransitionStyle = .crossDissolve
+                    self.present(mainView!, animated: true, completion: nil)
+                    
                     let DB = Firestore.firestore()
                     let Current_User = Auth.auth().currentUser
-                    
+                
                     if self.name != nil{
                         DB.collection("users").document(Current_User!.uid).setData(
                             ["id" : Current_User!.uid,
-                             "useremail" : self.email.text!,
-                             "name" : self.name!,
-                             "blockedUserId" : [],
-                        ])
+                            "useremail" : self.email.text!,
+                            "name" : self.name!,
+                            "blockedUserId" : [],
+                            ])
                     }
                 }
                 else{
-                    print("login fail")
-                    let LoginFailAlert = UIAlertController(title: "알림", message: "존재하지 않는 유저 정보입니다.", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
-                    LoginFailAlert.addAction(ok)
-                    self.present(LoginFailAlert, animated: true, completion: nil)
+                    print("verification error")
                 }
             }
-        }
-        else{
-            print("Verificaiton yet")
+            else{
+                print("login fail")
+                let LoginFailAlert = UIAlertController(title: "알림", message: "존재하지 않는 유저 정보입니다.", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
+                LoginFailAlert.addAction(ok)
+                self.present(LoginFailAlert, animated: true, completion: nil)
+            }
         }
     }
     

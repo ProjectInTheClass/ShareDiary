@@ -9,6 +9,8 @@ import FirebaseStorage
 import ImageSlideshow
 import ImageSlideshowAlamofire
 
+import FINNBottomSheet
+
 var db: Firestore? = nil
 var userCollection: CollectionReference? = nil
 var diaryCollection: CollectionReference? = nil
@@ -18,10 +20,14 @@ var storage: Storage? = nil
 
 var uid: String? = nil
 var groups: [String] = []
+var groupsName: [String] = []
+
+var selectedGroups: [String] = []
 
 var showDiarys: [Diary] = []
 
 var diarysAll: [Diary] = []
+var selectedDiarys: [Diary] = []
 var privateDiarys: [Diary] = []
 
 var isPrivate: Bool = false
@@ -34,12 +40,44 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
     
     @IBOutlet weak var tv: UITableView!
     
+    @IBAction func groupViewClicked(_ sender: UIButton) {
+        var pickerData : [[String:String]] = []
+        
+        for i in 0...(groups.count - 1) {
+            pickerData.append([
+                "value": groups[i],
+                "display": groupsName[i]
+            ])
+        }
+                
+        MultiPickerDialog().show(title: "그룹 선택",doneButtonTitle:"선택 완료", cancelButtonTitle:"취소" ,options: pickerData, selected:  selectedGroups) {
+                    values -> Void in
+                    //print("SELECTED \(value), \(showName)")
+                    print("callBack \(values)")
+                    var finalText = ""
+                    selectedGroups.removeAll()
+            
+                    for (index,value) in values.enumerated(){
+                        selectedGroups.append(value["value"]!)
+                        finalText = finalText  + value["display"]! + (index < values.count - 1 ? " , ": "")
+                        print(finalText)
+                    }
+            
+                    sender.titleLabel?.text = finalText
+            
+            selectedDiarys = diarysAll.filter({(d: Diary) in selectedGroups.contains(where: {(gid: String) in d.sharedGroupId.contains(where: {$0 == gid})})})
+            showDiarys = selectedDiarys
+            
+            self.tv.reloadData()
+                }
+    }
+    
     @IBAction func privateSegmentListenr(_ sender: Any) {
         switch privateSegment.selectedSegmentIndex
         {
             case 0:
                 isPrivate = false
-                showDiarys = diarysAll
+                showDiarys = selectedDiarys
                 self.tv.reloadData()
                 break
             case 1:
@@ -75,20 +113,21 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
         self.tagSearchBar.placeholder = "태그를 입력해 주세요."
     }
     
-    func diaryLoad() {
+func diaryLoad() {
         for i in 0...(groups.count - 1) {
             diaryCollection?.whereField("sharedGroupId", arrayContains: groups[i]).getDocuments(completion: {
                 (qs, e) in
                     if let e = e {
                         print(e)
                     } else {
+//                        (document["date"] as! Timestamp).
                         for document in qs!.documents {
                             if (!diarysAll.contains(where: {$0.id == document["id"] as! String})) {
                                 diarysAll.append(
                                     Diary(
                                         id: document["id"] as! String,
                                             authorId: document["authorId"] as! String,
-                                          date: Date(),
+                                            date: Date(timeIntervalSince1970: TimeInterval((document["date"] as! Timestamp).seconds)),
                                           tag: document["tag"] as! [String],
                                           sharedGroupId: document["sharedGroupId"] as! [String],
                                           imageUrls: document["imageUrls"] as! [String],
@@ -107,8 +146,8 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
                         }
                     }
                     
-                    showDiarys = diarysAll
-                
+                selectedDiarys = diarysAll
+                showDiarys = selectedDiarys
                     privateDiarys = diarysAll.filter({$0.authorId == uid!})
                     
                     self.tv.reloadData()
@@ -138,6 +177,7 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
                 print(qs!.documents.count)
                 for document in qs!.documents {
                     groups.append(document.documentID)
+                    groupsName.append(document.data()["groupName"] as! String)
                 }
             }
             
@@ -239,17 +279,26 @@ extension HomeViewContoller: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if showDiarys[indexPath.row].authorId == uid {
             let deleteAction = UIContextualAction(style: .destructive, title: "삭제") { action, view, completion in
-                // todo 일기 삭제
-
+                diaryCollection?.document(showDiarys[indexPath.row].id).delete();
+                
                 showDiarys.remove(at: indexPath.row)
+                selectedDiarys.remove(at: indexPath.row)
 
                 tableView.deleteRows(at: [indexPath], with: .automatic)
-
+                
                 completion(true)
             }
 
             let editAction = UIContextualAction(style: .normal, title: "수정") { action, view, completion in
-                // 일기 수정
+                let storyboard: UIStoryboard = UIStoryboard(name: "WriteTab",bundle: nil)
+                guard let secondViewController = storyboard.instantiateViewController(withIdentifier: "WriteTab") as? WriteViewController else { return }
+                        // 화면 전환 애니메이션 설정
+                        secondViewController.modalTransitionStyle = .coverVertical
+                
+                        // 전환된 화면이 보여지는 방법 설정 (fullScreen)
+                        secondViewController.modalPresentationStyle = .fullScreen
+                        self.present(secondViewController, animated: true, completion: nil)
+                
                 completion(true)
             }
 
@@ -263,6 +312,7 @@ extension HomeViewContoller: UITableViewDelegate, UITableViewDataSource {
                 self.addBlockUser(id: showDiarys[indexPath.row].authorId)
 
                 showDiarys.remove(at: indexPath.row)
+                selectedDiarys.remove(at: indexPath.row)
 
                 tableView.deleteRows(at: [indexPath], with: .automatic)
 
@@ -275,6 +325,7 @@ extension HomeViewContoller: UITableViewDelegate, UITableViewDataSource {
             return configuration
         }
     }
+    
 }
 
 extension HomeViewContoller: UISearchBarDelegate {
@@ -293,6 +344,13 @@ extension HomeViewContoller: UISearchBarDelegate {
                 showDiarys = diarysAll
             }
         }
+        self.tagSearchBar.resignFirstResponder()
         self.tv.reloadData()
     }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        self.tagSearchBar.resignFirstResponder()
+    }
 }
+
+
