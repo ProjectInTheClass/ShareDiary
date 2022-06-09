@@ -45,6 +45,10 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
     @IBAction func groupViewClicked(_ sender: UIButton) {
         var pickerData : [[String:String]] = []
         
+        if(groups.count < 1) {
+            return
+        }
+        
         for i in 0...(groups.count - 1) {
             pickerData.append([
                 "value": groups[i],
@@ -276,23 +280,35 @@ extension HomeViewContoller: UITableViewDelegate, UITableViewDataSource {
         cell.imageSlideShow.activityIndicator = DefaultActivityIndicator()
         cell.imageSlideShow.delegate = self
         
+        print(diary.text)
+        print(diary.imageUrls)
+        
+        var flag = false
+        
         for i in diary.imageUrls {
             var str = i
             if (!i.starts(with: "images/")){
                 str = "images/" + i;
             }
             
+            if (!flag) {
+                flag = true
+                cell.imageSlideShow.setImageInputs([])
+            }
+            
             storage?.reference(withPath: str).downloadURL() { (url, error) in
                 if (cell.imageSlideShow.images.count >= diary.imageUrls.count) {
+                    print("cell.imageSlideShow.images.count >= diary.imageUrls.count")
                     cell.imageSlideShow.setImageInputs(cell.imageSlideShow.images)
                     return
                 }
                 
                 if(url != nil) {
+                    print("url != nil")
                     cell.imageSlideShow.setImageInputs(cell.imageSlideShow.images + [AlamofireSource(url: url!)])
+                } else {
+                    print("url == nil !!!!!!!!!!!!!!!!!")
                 }
-                
-                print(cell.imageSlideShow.images.count)
             }
         }
     
