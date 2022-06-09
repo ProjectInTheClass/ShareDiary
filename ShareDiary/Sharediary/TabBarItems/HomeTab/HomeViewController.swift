@@ -97,7 +97,6 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         
         loadCnt += 1
         

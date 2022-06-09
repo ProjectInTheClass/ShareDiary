@@ -43,7 +43,20 @@ class OptionViewController: UIViewController{
             let Current_User = Auth.auth().currentUser
             let DB = Firestore.firestore()
             
+            /*userCollection?.whereField("id", isEqualTo: Current_User?.uid).getDocuments(completion: {(qs, e) in
+                
+                if let e = e {
+                    print(e)
+                }
+                else{
+                    for document in qs!.documents{
+                        if document.collection.field("id")
+                    }
+                }
+            })*/
+            
             DB.collection("users").document(Current_User!.uid).delete()
+            
            
             Current_User?.delete(){ (error) in
                 if error != nil{

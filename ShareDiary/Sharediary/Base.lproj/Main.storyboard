@@ -19,7 +19,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="2Co-2L-cPc">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Orz-wl-hHo" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarView" automaticallyAdjustsScrollViewInsets="NO" id="Orz-wl-hHo" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="MzN-pj-udd"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="LxX-oG-mjM">
