@@ -35,10 +35,36 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="hRd-c5-a3K">
-                                <rect key="frame" x="5" y="114" width="404" height="124"/>
+                                <rect key="frame" x="5" y="114" width="404" height="167"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="97" translatesAutoresizingMaskIntoConstraints="NO" id="BEj-8K-iAN">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="97" translatesAutoresizingMaskIntoConstraints="NO" id="Noe-JO-5nl">
                                         <rect key="frame" x="5" y="0.0" width="394" height="24"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="회원정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Tq-AH-riT">
+                                                <rect key="frame" x="0.0" y="0.0" width="256.5" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rfy-4E-hc2">
+                                                <rect key="frame" x="353.5" y="0.0" width="40.5" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Rfy-4E-hc2" secondAttribute="trailing" constant="5" id="bXJ-6T-Api"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="97" translatesAutoresizingMaskIntoConstraints="NO" id="BEj-8K-iAN">
+                                        <rect key="frame" x="5" y="43" width="394" height="24"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="버전정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gat-RZ-9fE">
                                                 <rect key="frame" x="0.0" y="0.0" width="250.5" height="24"/>
@@ -64,7 +90,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fkD-pw-Z0x">
-                                        <rect key="frame" x="5" y="43" width="394" height="31"/>
+                                        <rect key="frame" x="5" y="86" width="394" height="31"/>
                                         <color key="backgroundColor" systemColor="systemGray4Color"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="로그아웃">
@@ -80,7 +106,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VQd-q1-mu6">
-                                        <rect key="frame" x="5" y="93" width="394" height="31"/>
+                                        <rect key="frame" x="5" y="136" width="394" height="31"/>
                                         <color key="backgroundColor" systemColor="systemGray4Color"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="회원탈퇴">
@@ -101,7 +127,9 @@
                                     <constraint firstAttribute="trailing" secondItem="fkD-pw-Z0x" secondAttribute="trailing" constant="5" id="1Rx-j4-DFS"/>
                                     <constraint firstAttribute="trailing" secondItem="VQd-q1-mu6" secondAttribute="trailing" constant="5" id="6tg-GV-vWp"/>
                                     <constraint firstItem="VQd-q1-mu6" firstAttribute="leading" secondItem="hRd-c5-a3K" secondAttribute="leading" constant="5" id="Cya-0Q-NPa"/>
+                                    <constraint firstItem="Noe-JO-5nl" firstAttribute="leading" secondItem="hRd-c5-a3K" secondAttribute="leading" constant="5" id="efU-3k-vRC"/>
                                     <constraint firstAttribute="trailing" secondItem="BEj-8K-iAN" secondAttribute="trailing" constant="5" id="oSy-g2-QnI"/>
+                                    <constraint firstAttribute="trailing" secondItem="Noe-JO-5nl" secondAttribute="trailing" constant="5" id="uSM-zl-lpG"/>
                                     <constraint firstItem="fkD-pw-Z0x" firstAttribute="leading" secondItem="hRd-c5-a3K" secondAttribute="leading" constant="5" id="zly-hZ-gQi"/>
                                 </constraints>
                             </stackView>
@@ -115,6 +143,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="gearshape" catalog="system" selectedImage="gearshape.fill" id="qqB-9L-aZ3"/>
+                    <connections>
+                        <outlet property="Current_User_Label" destination="Rfy-4E-hc2" id="OHB-ej-VN5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CMb-QY-ANt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
