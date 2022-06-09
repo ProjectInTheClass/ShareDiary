@@ -113,6 +113,27 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
         self.tagSearchBar.placeholder = "태그를 입력해 주세요."
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        groups = []
+        groupsName = []
+
+        selectedGroups = []
+
+        showDiarys = []
+
+        diarysAll = []
+        selectedDiarys = []
+        privateDiarys = []
+
+        isPrivate = false
+        
+        // firestore load
+        firebaseLoad()
+        
+        self.tagSearchBar.placeholder = "태그를 입력해 주세요."
+    }
+    
 func diaryLoad() {
         for i in 0...(groups.count - 1) {
             diaryCollection?.whereField("sharedGroupId", arrayContains: groups[i]).getDocuments(completion: {
