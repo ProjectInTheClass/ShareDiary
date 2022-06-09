@@ -12,6 +12,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseCore
+import FirebaseFirestoreSwift
 
 class LoginViewController: UIViewController{
     
@@ -49,6 +50,16 @@ class LoginViewController: UIViewController{
                             "name" : self.name!,
                             "blockedUserId" : [],
                             ])
+                        let newGid = DB.collection("groups").document().documentID
+
+                        DB.collection("groups").document(newGid).setData(
+                            ["id": newGid,
+                             "groupName": "Private",
+                             "memberId": Current_User!.uid,
+                             "inviteCode": " ",
+                             "createdAt": Date.now,
+                            ])
+                       
                     }
                 }
                 else{
