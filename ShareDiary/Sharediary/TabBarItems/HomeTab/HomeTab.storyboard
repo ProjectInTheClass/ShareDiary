@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JKp-HT-mJx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rcS-8x-62K">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -86,9 +86,7 @@
                             <constraint firstItem="4Aw-DA-MQK" firstAttribute="leading" secondItem="50z-rG-7om" secondAttribute="leading" id="pgQ-xU-zao"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" selectedImage="house.fill" catalog="system" id="7oC-wd-oP3">
-                        <imageReference key="image" image="house" catalog="system" symbolScale="default"/>
-                    </tabBarItem>
+                    <navigationItem key="navigationItem" id="mH8-MA-Y0W"/>
                     <connections>
                         <outlet property="privateSegment" destination="sD4-Qm-NDp" id="dnb-LF-1UP"/>
                         <outlet property="tagSearchBar" destination="xRA-ld-GPg" id="feN-sS-6Zx"/>
@@ -96,6 +94,27 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMt-3A-Dwx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1028.985507246377" y="0.6696428571428571"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="rv0-pq-47d">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rcS-8x-62K" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" selectedImage="house.fill" catalog="system" id="7oC-wd-oP3">
+                        <imageReference key="image" image="house" catalog="system" symbolScale="default"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="58O-St-hBO">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="JKp-HT-mJx" kind="relationship" relationship="rootViewController" id="53q-bb-W7M"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zj8-5S-vLu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="118.84057971014494" y="0.6696428571428571"/>
         </scene>
