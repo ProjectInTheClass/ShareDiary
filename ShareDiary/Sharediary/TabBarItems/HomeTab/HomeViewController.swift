@@ -124,8 +124,6 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
 
         selectedGroups = []
 
-        showDiarys = []
-
         diarysAll = []
         selectedDiarys = []
         privateDiarys = []
