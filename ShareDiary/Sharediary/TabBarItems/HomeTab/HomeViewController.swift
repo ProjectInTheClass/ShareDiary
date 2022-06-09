@@ -148,7 +148,7 @@ func diaryLoad() {
                                     Diary(
                                         id: document["id"] as! String,
                                             authorId: document["authorId"] as! String,
-                                            date: Date(timeIntervalSince1970: TimeInterval((document["date"] as! Timestamp).seconds)),
+                                        date: Date(timeIntervalSince1970: TimeInterval((document["date"] as! Timestamp).seconds)),
                                           tag: document["tag"] as! [String],
                                           sharedGroupId: document["sharedGroupId"] as! [String],
                                           imageUrls: document["imageUrls"] as! [String],
@@ -156,7 +156,6 @@ func diaryLoad() {
                                           text: document["text"] as! String,
                                           emotion: document["emotion"] as! String)
                                 )
-                                print("append", document["id"] as! String)
                             }
                         }
                     }
@@ -240,7 +239,9 @@ extension HomeViewContoller: UITableViewDelegate, UITableViewDataSource {
         
         cell.commentLabel.text = diary.text
         
-        let dateString = diary.date.description
+        let dateString = diary.date.description.localizedLowercase
+        print(diary.text)
+        print(dateString)
         let endIdx: String.Index = dateString.index(dateString.startIndex, offsetBy: 10)
         cell.dateLabel.text = String(dateString[...endIdx])
         cell.emojiLabel.text = diary.emotion
