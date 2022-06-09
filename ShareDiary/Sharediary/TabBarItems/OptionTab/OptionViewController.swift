@@ -44,8 +44,7 @@ class OptionViewController: UIViewController{
             let DB = Firestore.firestore()
             
             DB.collection("users").document(Current_User!.uid).delete()
-            DB.collection("groups").document()
-            
+           
             Current_User?.delete(){ (error) in
                 if error != nil{
                     print("Signout Error!")
