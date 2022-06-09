@@ -74,7 +74,7 @@
                                                 </constraints>
                                                 <color key="tintColor" systemColor="systemGray6Color"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Login"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="로그인"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                         <integer key="value" value="5"/>
@@ -93,7 +93,7 @@
                                                 </constraints>
                                                 <color key="tintColor" systemColor="systemGray6Color"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Signin"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="회원가입"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                         <integer key="value" value="5"/>
@@ -112,7 +112,7 @@
                                                 </constraints>
                                                 <color key="tintColor" systemColor="systemGray6Color"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Forgot Password?"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="비밀번호를 잊어버리셨나요?"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                         <integer key="value" value="5"/>

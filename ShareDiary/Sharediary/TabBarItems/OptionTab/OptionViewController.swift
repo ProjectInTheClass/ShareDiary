@@ -12,6 +12,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 
 class OptionViewController: UIViewController{
@@ -39,7 +40,12 @@ class OptionViewController: UIViewController{
         let WithdrawlCheck = UIAlertController(title: "알림", message: "정말 회원 탈퇴 하시겠습니까?", preferredStyle: .alert)
         let delete = UIAlertAction(title: "취소",style: .default, handler: nil)
         let ok = UIAlertAction(title: "확인", style: .default){ (ok) in
-            Auth.auth().currentUser?.delete(){ (error) in
+            let Current_User = Auth.auth().currentUser
+            let DB = Firestore.firestore()
+            
+            DB.collection("users").document(Current_User!.uid).delete()
+           
+            Current_User?.delete(){ (error) in
                 if error != nil{
                     print("Signout Error!")
                 }
@@ -58,6 +64,7 @@ class OptionViewController: UIViewController{
                 }
                 
             }
+            
             
         }
         WithdrawlCheck.addAction(ok)
