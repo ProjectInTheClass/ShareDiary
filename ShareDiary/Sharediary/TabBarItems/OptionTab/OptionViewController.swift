@@ -16,7 +16,11 @@ import FirebaseFirestore
 
 class OptionViewController: UIViewController{
     
+    @IBOutlet weak var Current_User_Label: UILabel!
     
+    override func viewDidLoad() {
+        Current_User_Label.text = Auth.auth().currentUser?.email
+    }
     @IBAction func LogOutButton(_ sender: Any) {
         do{
             try Auth.auth().signOut()
@@ -40,16 +44,16 @@ class OptionViewController: UIViewController{
                     print("Signout Error!")
                 }
                 else{
-                    let AccountDeletedAlert = UIAlertController(title: "알림", message: "회원 탈퇴했습니다.", preferredStyle: .alert)
-                    let okDelete = UIAlertAction(title: "확인", style: .default,handler: nil)
-                    AccountDeletedAlert.addAction(okDelete)
-                    self.present(AccountDeletedAlert,animated: true,completion: nil)
-                    
                     let storyboard: UIStoryboard = UIStoryboard(name: "Login",bundle: nil)
                     let LoginView = storyboard.instantiateInitialViewController()
                     LoginView?.modalPresentationStyle = .fullScreen
                     LoginView?.modalTransitionStyle = .crossDissolve
                     self.present(LoginView!, animated: true, completion: nil)
+                    
+                    let AccountDeletedAlert = UIAlertController(title: "알림", message: "회원 탈퇴했습니다.", preferredStyle: .alert)
+                    let okDelete = UIAlertAction(title: "확인", style: .default,handler: nil)
+                    AccountDeletedAlert.addAction(okDelete)
+                    self.present(AccountDeletedAlert,animated: true,completion: nil)
                     
                 }
                 

@@ -68,6 +68,8 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
             selectedDiarys = diarysAll.filter({(d: Diary) in selectedGroups.contains(where: {(gid: String) in d.sharedGroupId.contains(where: {$0 == gid})})})
             showDiarys = selectedDiarys
             
+            sortShowDiaries()
+            
             self.tv.reloadData()
                 }
     }
@@ -78,11 +80,13 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
             case 0:
                 isPrivate = false
                 showDiarys = selectedDiarys
+                sortShowDiaries()
                 self.tv.reloadData()
                 break
             case 1:
                 isPrivate = true
                 showDiarys = privateDiarys
+                sortShowDiaries()
                 self.tv.reloadData()
                 break
             default:
@@ -113,6 +117,27 @@ class HomeViewContoller: UIViewController, ImageSlideshowDelegate {
         self.tagSearchBar.placeholder = "태그를 입력해 주세요."
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        groups = []
+        groupsName = []
+
+        selectedGroups = []
+
+        showDiarys = []
+
+        diarysAll = []
+        selectedDiarys = []
+        privateDiarys = []
+
+        isPrivate = false
+        
+        // firestore load
+        firebaseLoad()
+        
+        self.tagSearchBar.placeholder = "태그를 입력해 주세요."
+    }
+    
 func diaryLoad() {
         for i in 0...(groups.count - 1) {
             diaryCollection?.whereField("sharedGroupId", arrayContains: groups[i]).getDocuments(completion: {
@@ -127,7 +152,7 @@ func diaryLoad() {
                                     Diary(
                                         id: document["id"] as! String,
                                             authorId: document["authorId"] as! String,
-                                            date: Date(timeIntervalSince1970: TimeInterval((document["date"] as! Timestamp).seconds)),
+                                        date: Date(timeIntervalSince1970: TimeInterval((document["date"] as! Timestamp).seconds)),
                                           tag: document["tag"] as! [String],
                                           sharedGroupId: document["sharedGroupId"] as! [String],
                                           imageUrls: document["imageUrls"] as! [String],
@@ -135,7 +160,6 @@ func diaryLoad() {
                                           text: document["text"] as! String,
                                           emotion: document["emotion"] as! String)
                                 )
-                                print("append", document["id"] as! String)
                             }
                         }
                     }
@@ -150,6 +174,7 @@ func diaryLoad() {
                 showDiarys = selectedDiarys
                     privateDiarys = diarysAll.filter({$0.authorId == uid!})
                     
+                    sortShowDiaries()
                     self.tv.reloadData()
                 }
             )
@@ -219,7 +244,9 @@ extension HomeViewContoller: UITableViewDelegate, UITableViewDataSource {
         
         cell.commentLabel.text = diary.text
         
-        let dateString = diary.date.description
+        let dateString = diary.date.description.localizedLowercase
+        print(diary.text)
+        print(dateString)
         let endIdx: String.Index = dateString.index(dateString.startIndex, offsetBy: 10)
         cell.dateLabel.text = String(dateString[...endIdx])
         cell.emojiLabel.text = diary.emotion
@@ -292,12 +319,16 @@ extension HomeViewContoller: UITableViewDelegate, UITableViewDataSource {
             let editAction = UIContextualAction(style: .normal, title: "수정") { action, view, completion in
                 let storyboard: UIStoryboard = UIStoryboard(name: "WriteTab",bundle: nil)
                 guard let secondViewController = storyboard.instantiateViewController(withIdentifier: "WriteTab") as? WriteViewController else { return }
-                        // 화면 전환 애니메이션 설정
-                        secondViewController.modalTransitionStyle = .coverVertical
                 
-                        // 전환된 화면이 보여지는 방법 설정 (fullScreen)
-                        secondViewController.modalPresentationStyle = .fullScreen
-                        self.present(secondViewController, animated: true, completion: nil)
+                // 화면 전환 애니메이션 설정
+                secondViewController.modalTransitionStyle = .coverVertical
+        
+                // 전환된 화면이 보여지는 방법 설정 (fullScreen)
+                secondViewController.modalPresentationStyle = .fullScreen
+                
+                secondViewController.ddid = showDiarys[indexPath.row].id
+                
+                self.navigationController?.pushViewController(secondViewController, animated: true)
                 
                 completion(true)
             }
@@ -345,12 +376,19 @@ extension HomeViewContoller: UISearchBarDelegate {
             }
         }
         self.tagSearchBar.resignFirstResponder()
+        
+        sortShowDiaries()
+        
         self.tv.reloadData()
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         self.tagSearchBar.resignFirstResponder()
     }
+}
+
+func sortShowDiaries() {
+    showDiarys.sort(by: {$0.date > $1.date})
 }
 
 
