@@ -40,27 +40,7 @@ class LoginViewController: UIViewController{
                     mainView?.modalTransitionStyle = .crossDissolve
                     self.present(mainView!, animated: true, completion: nil)
                     
-                    let DB = Firestore.firestore()
-                    let Current_User = Auth.auth().currentUser
-                
-                    if self.name != nil{
-                        DB.collection("users").document(Current_User!.uid).setData(
-                            ["id" : Current_User!.uid,
-                            "useremail" : self.email.text!,
-                            "name" : self.name!,
-                            "blockedUserId" : [],
-                            ])
-                        let newGid = DB.collection("groups").document().documentID
-
-                        DB.collection("groups").document(newGid).setData(
-                            ["id": newGid,
-                             "groupName": "Private",
-                             "memberId": [Current_User!.uid],
-                             "inviteCode": " ",
-                             "createdAt": Date.now,
-                            ])
-                       
-                    }
+                    
                 }
                 else{
                     print("verification error")
@@ -92,6 +72,27 @@ class LoginViewController: UIViewController{
                         
                     self.present(EnterNameTextFieldAlert, animated: true, completion: nil)
                     
+                    let DB = Firestore.firestore()
+                    let Current_User = Auth.auth().currentUser
+                
+                    if self.name != nil{
+                        DB.collection("users").document(Current_User!.uid).setData(
+                            ["id" : Current_User!.uid,
+                            "useremail" : self.email.text!,
+                            "username" : self.name!,
+                            "blockedUserId" : [],
+                            ])
+                        let newGid = DB.collection("groups").document().documentID
+
+                        DB.collection("groups").document(newGid).setData(
+                            ["id": newGid,
+                             "groupName": "Private",
+                             "memberId": [Current_User!.uid],
+                             "inviteCode": " ",
+                             "createdAt": Date.now,
+                            ])
+                       
+                    }
                 }
             }
             else{
