@@ -12,8 +12,14 @@ import Firebase
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseCore
+import FirebaseFirestoreSwift
 
 class LoginViewController: UIViewController{
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("touch")
+        self.view.endEditing(true)
+    }
     
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -44,6 +50,16 @@ class LoginViewController: UIViewController{
                             "name" : self.name!,
                             "blockedUserId" : [],
                             ])
+                        let newGid = DB.collection("groups").document().documentID
+
+                        DB.collection("groups").document(newGid).setData(
+                            ["id": newGid,
+                             "groupName": "Private",
+                             "memberId": Current_User!.uid,
+                             "inviteCode": " ",
+                             "createdAt": Date.now,
+                            ])
+                       
                     }
                 }
                 else{
