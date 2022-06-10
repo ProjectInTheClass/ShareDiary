@@ -179,7 +179,7 @@ class WriteViewController: UIViewController {
         self.tv.allowsMultipleSelection = true
         self.tv.dataSource = self
         self.tv.delegate = self
-        
+        self.tagTextField.delegate = self
         self.cv.delegate = self
         self.cv.dataSource = self
         self.cv.register(UINib(nibName: "WriteCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "WriteCollectionViewCell")
@@ -192,6 +192,10 @@ class WriteViewController: UIViewController {
         storageRef = Storage.storage().reference(withPath: "images")
     }
 
+    @IBAction func tagEditingChanged(_ sender: Any) {
+        print("tagcount \(self.tagTextField.text?.count)")
+        
+    }
     @IBAction func selectBtnTabbed(_ sender: Any) {
         let imagePicker = ImagePickerController()
 
@@ -398,4 +402,8 @@ extension WriteViewController: UITableViewDataSource, UITableViewDelegate {
             tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
         }
     }
+}
+
+extension WriteViewController: UITextFieldDelegate {
+    
 }

@@ -49,7 +49,7 @@
                                     <constraint firstAttribute="trailing" secondItem="DpN-Hk-fbb" secondAttribute="trailing" id="k5t-J7-MVA"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="283-45-qKx">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="283-45-qKx">
                                 <rect key="frame" x="0.0" y="96" width="414" height="800"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hw0-YC-XGw" userLabel="ContentsView">
@@ -151,6 +151,9 @@
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <action selector="tagEditingChanged:" destination="dWg-wA-rlP" eventType="editingChanged" id="9A3-7q-rYs"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                     </stackView>

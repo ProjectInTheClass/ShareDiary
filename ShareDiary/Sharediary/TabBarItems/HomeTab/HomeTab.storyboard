@@ -19,7 +19,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" id="GPb-6w-jgI" userLabel="top">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="91"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="모아보기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ep-I8-vgK">
                                         <rect key="frame" x="10" y="51" width="394" height="30"/>
@@ -100,16 +100,18 @@
         <!--Navigation Controller-->
         <scene sceneID="rv0-pq-47d">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rcS-8x-62K" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="rcS-8x-62K" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" selectedImage="house.fill" catalog="system" id="7oC-wd-oP3">
                         <imageReference key="image" image="house" catalog="system" symbolScale="default"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="58O-St-hBO">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dgm-HE-Chz">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="JKp-HT-mJx" kind="relationship" relationship="rootViewController" id="53q-bb-W7M"/>
                     </connections>
@@ -120,8 +122,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="house" catalog="system" width="32" height="32"/>
-        <image name="house.fill" catalog="system" width="32" height="32"/>
+        <image name="house" catalog="system" width="128" height="106"/>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
