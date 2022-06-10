@@ -100,12 +100,13 @@
         <!--Navigation Controller-->
         <scene sceneID="rv0-pq-47d">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="rcS-8x-62K" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rcS-8x-62K" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" selectedImage="house.fill" catalog="system" id="7oC-wd-oP3">
                         <imageReference key="image" image="house" catalog="system" symbolScale="default"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="58O-St-hBO">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
