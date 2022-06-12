@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		477506502829C10100C0A93F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4775064F2829C10100C0A93F /* GoogleService-Info.plist */; };
 		478BD7CC2847820A00E74BB7 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478BD7CB2847820A00E74BB7 /* GroupViewController.swift */; };
 		478BD7D82848022100E74BB7 /* BSImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 478BD7D72848022100E74BB7 /* BSImagePicker */; };
 		478BD7E72848B82600E74BB7 /* WriteTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 478BD7E32848B82500E74BB7 /* WriteTab.storyboard */; };
@@ -22,6 +21,7 @@
 		47AFB4D02829CEE400D1A9F1 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFB4CF2829CEE400D1A9F1 /* Group.swift */; };
 		47AFB4D22829CEF700D1A9F1 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFB4D12829CEF700D1A9F1 /* Diary.swift */; };
 		47AFB4D42829D58600D1A9F1 /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFB4D32829D58600D1A9F1 /* DummyData.swift */; };
+		47BAFA332855FBA600B158AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 47BAFA322855FBA600B158AF /* GoogleService-Info.plist */; };
 		47D0B9AA2840D2790098439A /* HomeTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47D0B9A92840D2790098439A /* HomeTab.storyboard */; };
 		47D0B9AC2840D49F0098439A /* GroupTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47D0B9AB2840D49F0098439A /* GroupTab.storyboard */; };
 		47D0B9B22840D4E30098439A /* OptionTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47D0B9B12840D4E30098439A /* OptionTab.storyboard */; };
@@ -47,7 +47,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4775064F2829C10100C0A93F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		478BD7CB2847820A00E74BB7 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		478BD7E32848B82500E74BB7 /* WriteTab.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WriteTab.storyboard; sourceTree = "<group>"; };
 		478BD7E42848B82500E74BB7 /* WriteCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -57,6 +56,7 @@
 		47AFB4CF2829CEE400D1A9F1 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		47AFB4D12829CEF700D1A9F1 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
 		47AFB4D32829D58600D1A9F1 /* DummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
+		47BAFA322855FBA600B158AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		47D0B9A92840D2790098439A /* HomeTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeTab.storyboard; sourceTree = "<group>"; };
 		47D0B9AB2840D49F0098439A /* GroupTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GroupTab.storyboard; sourceTree = "<group>"; };
 		47D0B9B12840D4E30098439A /* OptionTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OptionTab.storyboard; sourceTree = "<group>"; };
@@ -185,11 +185,11 @@
 				4775064E2829BF7200C0A93F /* Models */,
 				47EB834E2829A42F00B43513 /* AppDelegate.swift */,
 				47EB83502829A42F00B43513 /* SceneDelegate.swift */,
+				47BAFA322855FBA600B158AF /* GoogleService-Info.plist */,
 				47EB83522829A42F00B43513 /* ViewController.swift */,
 				47EB83542829A42F00B43513 /* Main.storyboard */,
 				47EB83572829A43A00B43513 /* Assets.xcassets */,
 				47EB83592829A43A00B43513 /* LaunchScreen.storyboard */,
-				4775064F2829C10100C0A93F /* GoogleService-Info.plist */,
 				47EB835C2829A43A00B43513 /* Info.plist */,
 				D8B13145283BDB99000B84AA /* Login.storyboard */,
 				D8B13147283BDBBF000B84AA /* LoginViewController.swift */,
@@ -280,11 +280,11 @@
 				47D0B9AA2840D2790098439A /* HomeTab.storyboard in Resources */,
 				47D0B9AC2840D49F0098439A /* GroupTab.storyboard in Resources */,
 				478BD7EA2848B82600E74BB7 /* WriteCollectionViewCell.xib in Resources */,
-				477506502829C10100C0A93F /* GoogleService-Info.plist in Resources */,
 				47D0B9B22840D4E30098439A /* OptionTab.storyboard in Resources */,
 				9B3EEBEA28409E9D00A66908 /* HomeTableCell.xib in Resources */,
 				47EB83582829A43A00B43513 /* Assets.xcassets in Resources */,
 				D8B13146283BDB99000B84AA /* Login.storyboard in Resources */,
+				47BAFA332855FBA600B158AF /* GoogleService-Info.plist in Resources */,
 				478BD7E72848B82600E74BB7 /* WriteTab.storyboard in Resources */,
 				47EB83562829A42F00B43513 /* Main.storyboard in Resources */,
 			);
@@ -475,7 +475,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = SS2022SD.ShareDiary;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codershigh.ShareDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -505,7 +505,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = SS2022SD.ShareDiary;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codershigh.ShareDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

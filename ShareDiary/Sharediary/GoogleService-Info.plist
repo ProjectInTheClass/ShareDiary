@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1041634000759-bb89ltt50rlt3576vvi5ioppulkmrurn.apps.googleusercontent.com</string>
+	<string>1041634000759-62d42c4j8nd2h3hb19u7c5edkdmhq7mr.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1041634000759-bb89ltt50rlt3576vvi5ioppulkmrurn</string>
+	<string>com.googleusercontent.apps.1041634000759-62d42c4j8nd2h3hb19u7c5edkdmhq7mr</string>
 	<key>API_KEY</key>
 	<string>AIzaSyC8BcRoptN1-gpKLcWeqz3adGeY7aI1e3M</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>SS2022SD.ShareDiary</string>
+	<string>com.codershigh.ShareDiary</string>
 	<key>PROJECT_ID</key>
 	<string>sharediary-a7e8e</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1041634000759:ios:82ef676576d624c69e6b72</string>
+	<string>1:1041634000759:ios:6fa3f836de3d3ea39e6b72</string>
 </dict>
 </plist>
