@@ -70,6 +70,7 @@
 		47EB835C2829A43A00B43513 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B3EEBE928409E9D00A66908 /* HomeTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HomeTableCell.xib; path = ShareDiary/TabBarItems/HomeTab/HomeTableCell.xib; sourceTree = SOURCE_ROOT; };
 		D813A703284FA5C0006E2D3C /* OptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OptionViewController.swift; path = Sharediary/TabBarItems/OptionTab/OptionViewController.swift; sourceTree = SOURCE_ROOT; };
+		D8A310862858A27B00B82B4D /* ShareDiary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareDiary.entitlements; sourceTree = "<group>"; };
 		D8B13145283BDB99000B84AA /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Login.storyboard; path = Sharediary/Login.storyboard; sourceTree = SOURCE_ROOT; };
 		D8B13147283BDBBF000B84AA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Sharediary/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
 		F53F42E52850FDC900F4B9F6 /* MultiPickerDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MultiPickerDialog.swift; path = Sharediary/TabBarItems/HomeTab/MultiPickerDialog.swift; sourceTree = SOURCE_ROOT; };
@@ -181,6 +182,7 @@
 		47EB834D2829A42F00B43513 /* ShareDiary */ = {
 			isa = PBXGroup;
 			children = (
+				D8A310862858A27B00B82B4D /* ShareDiary.entitlements */,
 				47D0B9A42840D2170098439A /* TabBarItems */,
 				4775064E2829BF7200C0A93F /* Models */,
 				47EB834E2829A42F00B43513 /* AppDelegate.swift */,
@@ -456,11 +458,13 @@
 		47EB83602829A43A00B43513 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = ShareDiary/ShareDiary.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 4QG3GC35LA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShareDiary/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Why you want to access photo library";
@@ -486,11 +490,13 @@
 		47EB83612829A43A00B43513 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = ShareDiary/ShareDiary.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 4QG3GC35LA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShareDiary/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Why you want to access photo library";
